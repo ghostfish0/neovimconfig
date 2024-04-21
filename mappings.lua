@@ -38,7 +38,22 @@ map("n", "<A-S-j>", ":t .<CR>==", { desc = "Copy line up" })
 
 -- other mappings 
 map("n", "<leader>th", "<cmd>lua require('base46').toggle_theme()<cr>", { desc = "Toggle theme" })
+map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "NvimTree Toggle window" })
+
+-- terminal mappings
+map({ "n", "t" }, "<leader>v", function()
+  require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm", size = 0.3 }
+end, { desc = "Terminal Toggleable vertical term" })
+
+map({ "n", "t" }, "<leader>h", function()
+  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm", size = 0.3 }
+end, { desc = "Terminal New horizontal term" })
+
 
 --- remove default mappings 
+
+unmap({"n", "t"}, "<A-h>")
+unmap({"n", "t"}, "<A-v>")
+unmap("n", "<C-n>")
 unmap("n", "<leader>wk")
 unmap("n", "<leader>wK")

@@ -1,6 +1,11 @@
 local overrides = require "configs.overrides"
 return {
   {
+    "LunarVim/bigfile.nvim",
+    lazy = false,
+    opts = overrides.bigfile,
+  },
+  {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
     config = function()
@@ -25,7 +30,7 @@ return {
         end,
         desc = "CopilotChat - Quick chat",
       },
-      { ",,", "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" }
+      { ",,", "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" },
     },
     cmd = { "CopilotChat", "CopilotChatToggle" },
     dependencies = {
@@ -80,7 +85,10 @@ return {
   {
     "jbyuki/nabla.nvim",
     -- enabled = false,
-    keys = { { "<leader>p", '<cmd>lua require("nabla").popup()<CR>', "Peek mathzones" } },
+    keys = {
+      { "<leader>P", '<cmd>lua require("nabla").toggle_virt()<CR>', "Peek mathzones" },
+      { "<leader>p", '<cmd>lua require("nabla").popup()<CR>', "Peek mathzones" },
+    },
   },
   {
     "stevearc/aerial.nvim",
@@ -105,7 +113,7 @@ return {
       "WorkspacesSyncDirs",
     },
     config = function()
-      require("workspaces").setup { hooks = { open = { "NvimTreeFocus" } } }
+      require("workspaces").setup()
     end,
   },
   -- override plugin configs with setup function

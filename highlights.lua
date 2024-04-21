@@ -26,10 +26,12 @@ M.override = {
   St_Lsp = { fg = "cyan", bg = "statusline_bg", bold = true },
   St_pos_text = { fg = "yellow", bg = "statusline_bg", bold = true },
   St_pos_icon = { bg = "yellow", fg = "black" },
+  NvimTreeRootFolder = { fg = "cyan", bold = false },
 }
 
 ---@type HLTable
 M.add = {
+  ["@string.special.url.html"] = { fg = "blue" },
   markdownRule = { fg = "cyan" },
   markdownCodeblock = { fg = "orange" },
   markdownCodeDelimiter = { fg = "vibrant_green" },

@@ -1,5 +1,35 @@
 local M = {}
 
+local bigfilekeys = {
+  name = "bigfilekeys",
+  opts = { defer = false },
+  disable = function()
+    -- local map = vim.keymap.set
+    local unmap = vim.keymap.del
+    unmap("n", "j")
+    unmap("n", "k")
+  end,
+}
+
+M.bigfile = {
+  pattern = function(bufnr, _)
+    if vim.fn.getfsize(vim.fn.expand "%:p") > 30000 then
+      print("File too big!")
+      return true
+    end
+  end,
+  features = { -- features to disable
+    "indent_blankline",
+    "illuminate",
+    "lsp",
+    "treesitter",
+    "syntax",
+    "matchparen",
+    "filetype",
+    bigfilekeys,
+  },
+}
+
 M.context = {
   max_lines = 5, -- How many lines the window should span. Values <= 0 mean no limit.
   separator = "·",
@@ -53,24 +83,24 @@ M.peek = {
 }
 
 M.copilotchat = {
-      -- debug = true, -- Enable debugging
-      question_header = "**>**",
-      answer_header = "**<**",
-      error_header = "**!!!**",
-      separator = " ",
+  -- debug = true, -- Enable debugging
+  question_header = "**>**",
+  answer_header = "**<**",
+  error_header = "**!!!**",
+  separator = " ",
 
-      show_folds = false,
-      show_help = false,
-      auto_insert_mode = false,
-      -- See Configuration section for rest
-      -- window = {
-      --   layout = "float",
-      --   border = "rounded",
-      -- },
+  show_folds = false,
+  show_help = false,
+  auto_insert_mode = false,
+  -- See Configuration section for rest
+  -- window = {
+  --   layout = "float",
+  --   border = "rounded",
+  -- },
 }
 
 M.copilot = {
-  suggestion = { enabled = false, },
+  suggestion = { enabled = false },
   panel = { enabled = false },
   filetypes = {
     terminal = false,
@@ -110,7 +140,7 @@ M.treesitter = {
     "latex",
     --- graphics stuff
     "glsl",
-    --- 
+    ---
     "diff",
   },
   indent = {
@@ -166,19 +196,27 @@ M.telescope = {
     -- layout_strategy = "flex",
     layout_config = {},
     border = true,
+    preview = {
+      filesize_limit = 2,
+      highligh_limit = 0.1,
+      timeout = 10,
+      treesitter = false,
+    },
   },
-  extensions_list = { "themes", "terms", "workspaces" },
+  extensions_list = { "themes", "workspaces" },
 }
 
 -- git support and more in nvimtree
 M.nvimtree = {
   view = {
-    width = "25%",
+    cursorline = false,
+    width = {
+      max = "25%",
+    },
   },
   filters = {
-    git_ignored = true,
+    git_ignored = false,
   },
-
   git = {
     disable_for_dirs = {
       "C:\\Users\\tinnguyen\\Documents\\notes\\",
