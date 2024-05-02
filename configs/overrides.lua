@@ -207,7 +207,6 @@ M.telescope = {
       filesize_limit = 0.1,
       highligh_limit = 0.1,
       timeout = 100,
-      treesitter = false,
     },
   },
   extensions_list = { "themes", "workspaces", "aerial" },
