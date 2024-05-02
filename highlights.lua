@@ -91,6 +91,7 @@ M.add = {
   TreesitterContextSeparator = { fg = "cyan" },
   NvimTreeOpenedFolderName = { fg = "green", bold = true },
   AerialNormal = { fg = "green" },
+  helpExample = M.markdownCodeblock,
 }
 
 return M

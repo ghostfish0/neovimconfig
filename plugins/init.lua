@@ -34,7 +34,7 @@ return {
     },
     cmd = { "CopilotChat", "CopilotChatToggle" },
     dependencies = {
-      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+      { "zbirenbaum/copilot.lua" },
       { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
     },
     opts = overrides.copilotchat,

@@ -13,8 +13,13 @@ local bigfilekeys = {
 
 M.bigfile = {
   pattern = function(bufnr, _)
+    local ft = vim.filetype.match { buf = bufnr }
+    -- if vim.bo.filetype == "help" then
+    --   print("file is help")
+    --   return false
+    -- end
     if vim.fn.getfsize(vim.fn.expand "%:p") > 30000 then
-      print("File too big!")
+      print(ft)
       return true
     end
   end,
@@ -92,6 +97,8 @@ M.copilotchat = {
   show_folds = false,
   show_help = false,
   auto_insert_mode = false,
+
+  context = "buffers",
   -- See Configuration section for rest
   -- window = {
   --   layout = "float",
@@ -197,13 +204,13 @@ M.telescope = {
     layout_config = {},
     border = true,
     preview = {
-      filesize_limit = 2,
+      filesize_limit = 0.1,
       highligh_limit = 0.1,
-      timeout = 10,
+      timeout = 100,
       treesitter = false,
     },
   },
-  extensions_list = { "themes", "workspaces" },
+  extensions_list = { "themes", "workspaces", "aerial" },
 }
 
 -- git support and more in nvimtree
@@ -246,17 +253,64 @@ M.nvimtree = {
   },
 }
 
-M.colorizer = {
-  filetypes = {
-    "*", -- Highlight all files, but customize some others.
-    markdown = { names = false },
-  },
-}
+-- M.colorizer = {
+--   filetypes = {
+--     markdown = { names = false },
+--     "*", -- Highlight all files, but customize some others.
+--   },
+-- }
 
 M.blankline = {
   scope = {
     show_start = false,
     show_end = false,
+  },
+}
+
+M.chadrc = {
+  tabufline = {
+  },
+  statusline = {
+    theme = "default", -- default/vscode/vscode_colored/minimal
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "cwd", "lsp", "cursor", "copilot" },
+    -- default/round/block/arrow separators work only for default statusline theme
+    -- round and block will work for minimal theme only
+    modules = {
+      lsp = function()
+        local utils = require "nvchad.stl.utils"
+        if rawget(vim, "lsp") then
+          for _, client in ipairs(vim.lsp.get_active_clients()) do
+            if client.attached_buffers[utils.stbufnr()] and client.name ~= "copilot" then
+              return (vim.o.columns > 100 and "%#st_lspicon#▍ ▐%#st_lsp#" .. client.name .. " ")
+                or "%#st_lspicon#▍ ▐"
+            end
+          end
+        end
+        return ""
+      end,
+      cursor = function()
+        return "%#St_pos_icon#▍ %#St_Pos_text# %p%% "
+      end,
+      copilot = function()
+        local utils = require "nvchad.stl.utils"
+        if rawget(vim, "lsp") then
+          for _, client in ipairs(vim.lsp.get_active_clients()) do
+            if client.attached_buffers[utils.stbufnr()] and client.name == "copilot" then
+              local c = require "copilot.client"
+              return (c.is_disabled()) and "" or "%#St_CopilotSep# %#St_Copilot#  %#St_CopilotSep#▌"
+            end
+          end
+        end
+        return ""
+      end,
+      -- cwd = function()
+      --   local file = require("nvchad.stl.utils").file()
+      --   local name = vim.loop.cwd()
+      --   name = name:match "([^/\\]+)[/\\]*$" or name
+      --   return "%#St_cwd_text# " .. file[1] .. " " .. name .. "/" .. file[2] .. " "
+      -- end,
+    },
+    separator_style = "block",
   },
 }
 
