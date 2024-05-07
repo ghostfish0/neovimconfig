@@ -13,6 +13,7 @@ new_cmd("Todo", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/i-passi-
 new_cmd("Calendar", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/calendario.md", {})
 new_cmd("WhereAmI", ':lua print(vim.fn.expand("%:p"))', {})
 new_cmd("NablaToggle", 'lua require("nabla").toggle_virt()', {})
+new_cmd("Lazygit", 'lua require("nvchad.term").toggle { pos = "vsp", id = "lazygit", cmd=\'lazygit\' }', {})
 
 -- lua snippets
 vim.g.lua_snippets_path = vim.fn.stdpath "config" .. "\\lua\\snippets"

@@ -30,7 +30,7 @@ return {
         end,
         desc = "CopilotChat - Quick chat",
       },
-      { ",,", "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" },
+      { ",,", "<cmd>CopilotChatToggle<cr>", mode = {"n", "v"}, desc = "CopilotChat - Toggle" },
     },
     cmd = { "CopilotChat", "CopilotChatToggle" },
     dependencies = {
