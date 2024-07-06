@@ -27,6 +27,7 @@ M.override = {
   St_pos_text = { fg = "yellow", bg = "statusline_bg", bold = true },
   St_pos_icon = { bg = "yellow", fg = "black" },
   NvimTreeRootFolder = { fg = "cyan", bold = false },
+  TelescopeSelection = { bold = true },
 }
 
 ---@type HLTable
@@ -90,6 +91,8 @@ M.add = {
   TreesitterContext = { bg = "black" },
   TreesitterContextSeparator = { fg = "cyan" },
   NvimTreeOpenedFolderName = { fg = "green", bold = true },
+  NvimTreeCopiedHL = { underline = true },
+  NvimTreeCutHL = { underline = true },
   AerialNormal = { fg = "green" },
   helpExample = M.markdownCodeblock,
 }

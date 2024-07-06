@@ -5,7 +5,6 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 local unmap = vim.keymap.del
 
-
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("n", ";", ":", { desc = "Enter command mode", nowait = true })
 
@@ -19,8 +18,8 @@ map("n", "k", "gk")
 
 -- editing mappings
 map("n", "E", "$", { desc = "Goto end of line", remap = true })
-map({"n", "v", "i"}, "<C-Left>", ":tabn<cr>", { desc = "Next tab" })
-map({"n", "v", "i"}, "<C-Right>", ":tabp<cr>", { desc = "Previous tab" })
+map({ "n", "v", "i" }, "<C-Left>", ":tabn<cr>", { desc = "Next tab" })
+map({ "n", "v", "i" }, "<C-Right>", ":tabp<cr>", { desc = "Previous tab" })
 
 -- move line down/up
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
@@ -36,7 +35,7 @@ map("v", "<A-S-k>", ":co '><CR>Vgv=gv", { desc = "copy line up" })
 map("n", "<A-S-k>", ":t .-1<CR>==", { desc = "Copy line down" })
 map("n", "<A-S-j>", ":t .<CR>==", { desc = "Copy line up" })
 
--- other mappings 
+-- other mappings
 map("n", "<leader>th", "<cmd>lua require('base46').toggle_theme()<cr>", { desc = "Toggle theme" })
 map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "NvimTree Toggle window" })
 
@@ -49,11 +48,19 @@ map({ "n", "t" }, "<leader>h", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm", size = 0.3 }
 end, { desc = "Terminal New horizontal term" })
 
+map({ "n", "t" }, "<M-l>", function()
+  require("nvchad.term").toggle {
+    pos = "float",
+    id = "lazygit",
+    cmd = "lazygit; \n exit",
+    float_opts = { width = 0.9, height = 0.9 },
+  }
+end, { desc = "Terminal New lazygit" })
 
---- remove default mappings 
+--- remove default mappings
 
-unmap({"n", "t"}, "<A-h>")
-unmap({"n", "t"}, "<A-v>")
+unmap({ "n", "t" }, "<A-h>")
+unmap({ "n", "t" }, "<A-v>")
 unmap("n", "<C-n>")
 unmap("n", "<leader>wk")
 unmap("n", "<leader>wK")

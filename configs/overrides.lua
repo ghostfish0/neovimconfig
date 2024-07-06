@@ -88,7 +88,7 @@ M.peek = {
 }
 
 M.copilotchat = {
-  -- debug = true, -- Enable debugging
+  debug = false,
   question_header = "**>**",
   answer_header = "**<**",
   error_header = "**!!!**",
@@ -267,8 +267,6 @@ M.blankline = {
 }
 
 M.chadrc = {
-  tabufline = {
-  },
   statusline = {
     theme = "default", -- default/vscode/vscode_colored/minimal
     order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "cwd", "lsp", "cursor", "copilot" },
