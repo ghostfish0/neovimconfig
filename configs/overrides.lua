@@ -42,7 +42,6 @@ M.context = {
 
 M.aerial = {
   backends = {
-    tex = { "treesitter" },
     markdown = { "markdown" },
     ["_"] = { "treesitter", "lsp" },
   },
@@ -58,9 +57,6 @@ M.aerial = {
     --   "Method",
     --   "Struct",
     -- },
-    tex = {
-      "Method",
-    },
     ["_"] = false,
   },
   icons = {
@@ -70,14 +66,6 @@ M.aerial = {
   guides = {
     whitespace = " ",
   },
-  -- use on_attach to set keymaps when aerial has attached to a buffer
-  on_attach = function(bufnr)
-    -- Jump forwards/backwards with Shift + '{' and '}'
-    if vim.bo.filetype ~= "tex" then
-      vim.keymap.set("n", "<C-h>", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-      vim.keymap.set("n", "<C-l>}", "<cmd>AerialNext<CR>", { buffer = bufnr })
-    end
-  end,
 }
 
 M.peek = {
@@ -144,7 +132,6 @@ M.treesitter = {
     --- note taking stuff
     "markdown",
     "markdown_inline",
-    "latex",
     --- graphics stuff
     "glsl",
     ---
@@ -155,17 +142,6 @@ M.treesitter = {
     -- disable = {
     --   "python"
     -- },
-  },
-  highlight = {
-    disable = function(lang, bufnr)
-      -- print(vim.filetype.match({ buf = bufnr }))
-      local ft = vim.filetype.match { buf = bufnr }
-      if lang == "latex" then
-        return ft == nil or ft == "tex"
-      end
-    end,
-    --
-    -- additional_vim_regex_highlighting = { "latex", "markdown" },
   },
 }
 
@@ -193,8 +169,6 @@ M.mason = {
 
     -- note-taking stuff
     "marksman",
-    -- "latexindent",
-    "ltex-ls",
   },
 }
 
@@ -319,59 +293,6 @@ M.cmp = {
     { name = "buffer" },
     { name = "nvim_lua" },
     { name = "path" },
-  },
-}
-
-M.cmpmarkdown = {
-  -- enabled = function()
-  --   return require("nabla.utils").in_mathzone() == false
-  -- end,
-}
-
-M.cmptex = {
-  -- nvim-cmp overrides the standard completion-menu formatting. We use
-  -- a custom format function to preserve the format as provided by
-  -- VimTeX's omni completion function:
-  enabled = function()
-    return vim.api.nvim_eval "vimtex#syntax#in_mathzone()" ~= 1
-  end,
-  formatting = {
-    format = function(entry, item)
-      local cmp_ui = require("core.utils").load_config().ui.cmp
-      local cmp_style = cmp_ui.style
-      -- print(vim.inspect(entry.source))
-      os.execute "echo hello"
-      -- print(vim.inspect(entry.source))
-      if entry.source.name == "omni" then
-        -- local file = io.open("fishy.txt", "w+")
-        -- io.output(file)
-        -- io.write(vim.inspect(entry.completion_item.textEdit))
-        -- io.close(file)
-        item.kind = string.match(item.menu, "%[(.*)%]")
-        if string.find(item.menu, "cmd") then
-          item.kind = item.kind:gsub("cmd:", "")
-        else
-          item.kind = item.kind:gsub("^%l", string.upper)
-        end
-        item.menu = item.menu:match "[%]] (.*)"
-        -- item.menu = ""
-        -- lua print(vim.inspect(entry))
-        -- entry.documentation.value = "hello"
-      end
-      if cmp_style == "atom" or cmp_style == "atom_colored" then
-        item.menu = cmp_ui.lspkind_text and "   (" .. item.kind .. ")" or ""
-      else
-        item.kind = string.format("%s", cmp_ui.lspkind_text and item.kind or "")
-      end
-
-      return item
-    end,
-  },
-  sources = require("cmp").config.sources {
-    { name = "omni", trigger_characters = { "{" } },
-    { name = "luasnip" },
-    { name = "copilot" },
-    { name = "buffer" },
   },
 }
 

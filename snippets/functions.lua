@@ -19,9 +19,5 @@ M.in_mathzone_markdown = function()
   -- The `in_mathzone` function requires the Nabla plugin
   return require("nabla.utils").in_mathzone()
 end
-M.in_mathzone_latex = function()
-  -- The `in_mathzone` function requires the VimTeX plugin
-  return vim.fn["vimtex#syntax#in_mathzone"]()
-end
 
 return M

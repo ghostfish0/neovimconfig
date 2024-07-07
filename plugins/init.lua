@@ -75,11 +75,6 @@ return {
     end,
   },
   {
-    "lervag/vimtex",
-    enabled = false,
-    lazy = false,
-  },
-  {
     "jbyuki/nabla.nvim",
     -- enabled = false,
     keys = {
@@ -170,7 +165,6 @@ return {
     },
     config = function(_, opts)
       require("cmp").setup(opts)
-      require("cmp").setup.filetype("tex", overrides.cmptex)
       require("cmp").setup.filetype("markdown", overrides.cmpmarkdown)
     end,
   },

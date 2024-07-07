@@ -23,14 +23,3 @@ new_cmd("NablaToggle", 'lua require("nabla").toggle_virt()', {})
 vim.g.lua_snippets_path = vim.fn.stdpath "config" .. "\\lua\\snippets"
 ---
 
--- Autoclose preview window after completion in Latex
-api.nvim_create_autocmd("CompleteDone", { command = "pclose" })
-api.nvim_create_autocmd("BufWinEnter", { pattern = "*.{markdown,md}", command = "set nonu" })
-api.nvim_create_autocmd("BufWinLeave", { pattern = "*.{markdown,md}", command = "set nu" })
-api.nvim_create_autocmd("TermClose", {
-  callback = function()
-    if vim.v.event.status == 0 then
-      vim.cmd "bd!"
-    end
-  end,
-})
