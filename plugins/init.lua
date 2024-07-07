@@ -13,10 +13,6 @@ return {
     end,
   },
   {
-    "jbyuki/quickmath.nvim",
-    cmd = { "Quickmath" },
-  },
-  {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "canary",
     keys = {
