@@ -1,40 +1,5 @@
 local M = {}
 
-local bigfilekeys = {
-  name = "bigfilekeys",
-  opts = { defer = false },
-  disable = function()
-    -- local map = vim.keymap.set
-    local unmap = vim.keymap.del
-    unmap("n", "j")
-    unmap("n", "k")
-  end,
-}
-
-M.bigfile = {
-  pattern = function(bufnr, _)
-    local ft = vim.filetype.match { buf = bufnr }
-    -- if vim.bo.filetype == "help" then
-    --   print("file is help")
-    --   return false
-    -- end
-    if vim.fn.getfsize(vim.fn.expand "%:p") > 30000 then
-      print(ft)
-      return true
-    end
-  end,
-  features = { -- features to disable
-    "indent_blankline",
-    "illuminate",
-    "lsp",
-    "treesitter",
-    "syntax",
-    "matchparen",
-    "filetype",
-    bigfilekeys,
-  },
-}
-
 M.context = {
   max_lines = 5, -- How many lines the window should span. Values <= 0 mean no limit.
   separator = "·",
