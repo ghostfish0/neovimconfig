@@ -33,10 +33,6 @@ M.override = {
 ---@type HLTable
 M.add = {
   ["@string.special.url.html"] = { fg = "blue" },
-  markdownRule = { fg = "cyan" },
-  markdownCodeblock = { fg = "orange" },
-  markdownCodeDelimiter = { fg = "vibrant_green" },
-  markdownBold = { fg = "cyan", bold = true },
   DiagnosticUnnecessary = { fg = "purple", italic = true },
   St_LspIcon = { bg = "cyan", fg = "black" },
   St_Copilot = { bg = "vibrant_green", fg = "black" },
@@ -47,20 +43,6 @@ M.add = {
   IblScope = { fg = "grey" },
   CursorLine = { bg = "white" },
   -- rainbow headers
-  ["@markup.heading.1.markdown"] = { fg = "red", bold = true },
-  ["@markup.heading.2.markdown"] = { fg = "orange", bold = true },
-  ["@markup.heading.3.markdown"] = { fg = "yellow", bold = true },
-  ["@markup.heading.4.markdown"] = { fg = "green", bold = true },
-  ["@markup.heading.5.markdown"] = { fg = "blue", bold = true },
-  --
-  ["@markup.link.label.markdown_inline"] = { fg = "yellow" },
-  ["@lsp.type.class.markdown"] = { fg = "yellow" },
-  ["@markup.link.url.markdown_inline"] = { italic = true, fg = "cyan", underline = false },
-  ["@markup.heading.6.markdown"] = { fg = "purple", bold = true },
-  ["@punctuation.delimiter.markdown_inline"] = { fg = "grey_fg" },
-  ["@conceal.markdown_inline"] = { fg = "grey_fg" },
-  ["@punctuation.special.markdown"] = { fg = "cyan" },
-  -- latex markdown
   ["@nospell.latex"] = { bold = true },
   ["@spell.latex"] = { fg = "sun" },
   ["@markup.math.latex"] = { fg = "red" },

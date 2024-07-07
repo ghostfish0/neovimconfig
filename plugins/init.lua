@@ -1,11 +1,6 @@
 local overrides = require "configs.overrides"
 return {
   {
-    "LunarVim/bigfile.nvim",
-    lazy = false,
-    opts = overrides.bigfile,
-  },
-  {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
     config = function()
@@ -37,26 +32,11 @@ return {
     opts = overrides.copilotchat,
   },
   {
-    "jbyuki/venn.nvim",
-    enabled = false,
-    cmd = "VBox",
-  },
-  {
     "nvim-treesitter/nvim-treesitter-context",
     event = "User FilePost",
     config = function()
       require("treesitter-context").setup(overrides.context)
     end,
-  },
-  {
-    "mechatroner/rainbow_csv",
-    ft = { "csv", "tsv", "csv_semicolon", "csv_whitespace", "csv_pipe", "rfc_csv", "rfc_semicolon" },
-  },
-  {
-    "mg979/vim-visual-multi",
-    enabled = false,
-    branch = "master",
-    lazy = false,
   },
   {
     "zbirenbaum/copilot.lua",
@@ -66,17 +46,8 @@ return {
     end,
   },
   {
-    "saimo/peek.nvim",
-    enabled = false,
-    build = "deno task --quiet build:fast",
-    keys = { { "<leader>pp", ':lua require("peek").open()<CR>', "Peek markdown" } },
-    config = function()
-      require("peek").setup(overrides.peek)
-    end,
-  },
-  {
     "lervag/vimtex",
-    enabled = false,
+    enabled = true,
     lazy = false,
   },
   {
@@ -171,14 +142,9 @@ return {
     config = function(_, opts)
       require("cmp").setup(opts)
       require("cmp").setup.filetype("tex", overrides.cmptex)
-      require("cmp").setup.filetype("markdown", overrides.cmpmarkdown)
     end,
   },
   -- override plugin configs
-  {
-    "NvChad/nvim-colorizer.lua",
-    opts = overrides.colorizer,
-  },
   {
     "williamboman/mason.nvim",
     opts = overrides.mason,

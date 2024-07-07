@@ -4,7 +4,7 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "tsserver", "marksman", "pyright", "glsl_analyzer" }
+local servers = { }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -14,15 +14,3 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
-
-lspconfig["clangd"].setup {
-  on_attach = on_attach,
-  capabilities = {
-    textDocument = {
-      completion = {
-        editsNearCursor = true,
-      },
-    },
-    offsetEncoding = { "utf-16" },
-  },
-}

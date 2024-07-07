@@ -1,40 +1,5 @@
 local M = {}
 
-local bigfilekeys = {
-  name = "bigfilekeys",
-  opts = { defer = false },
-  disable = function()
-    -- local map = vim.keymap.set
-    local unmap = vim.keymap.del
-    unmap("n", "j")
-    unmap("n", "k")
-  end,
-}
-
-M.bigfile = {
-  pattern = function(bufnr, _)
-    local ft = vim.filetype.match { buf = bufnr }
-    -- if vim.bo.filetype == "help" then
-    --   print("file is help")
-    --   return false
-    -- end
-    if vim.fn.getfsize(vim.fn.expand "%:p") > 30000 then
-      print(ft)
-      return true
-    end
-  end,
-  features = { -- features to disable
-    "indent_blankline",
-    "illuminate",
-    "lsp",
-    "treesitter",
-    "syntax",
-    "matchparen",
-    "filetype",
-    bigfilekeys,
-  },
-}
-
 M.context = {
   max_lines = 5, -- How many lines the window should span. Values <= 0 mean no limit.
   separator = "·",
@@ -127,27 +92,13 @@ M.copilot = {
 M.treesitter = {
   ensure_installed = {
     "vim",
-    -- lua stuff
-    "lua",
-    -- web dev stuff
     "html",
-    "css",
-    "javascript",
-    "typescript",
-    "tsx",
-    --- c/cpp stuff
-    "c",
-    "cpp",
-    "cuda",
-    -- python stuff
     "python",
     --- note taking stuff
     "markdown",
     "markdown_inline",
     "latex",
     --- graphics stuff
-    "glsl",
-    ---
     "diff",
   },
   indent = {
@@ -164,8 +115,6 @@ M.treesitter = {
         return ft == nil or ft == "tex"
       end
     end,
-    --
-    -- additional_vim_regex_highlighting = { "latex", "markdown" },
   },
 }
 
@@ -174,25 +123,6 @@ M.mason = {
     -- lua stuff
     "lua-language-server",
     "stylua",
-
-    -- web dev stuff
-    "css-lsp",
-    "html-lsp",
-    "typescript-language-server",
-    "prettier",
-
-    -- c/cpp stuff
-    "clangd",
-    "clang-format",
-    "glsl_analyzer",
-    "rust_analyzer",
-
-    -- python stuff
-    "black",
-    "pyright",
-
-    -- note-taking stuff
-    "marksman",
     -- "latexindent",
     "ltex-ls",
   },
@@ -320,12 +250,6 @@ M.cmp = {
     { name = "nvim_lua" },
     { name = "path" },
   },
-}
-
-M.cmpmarkdown = {
-  -- enabled = function()
-  --   return require("nabla.utils").in_mathzone() == false
-  -- end,
 }
 
 M.cmptex = {
