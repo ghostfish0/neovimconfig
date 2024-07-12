@@ -151,6 +151,18 @@ M.telescope = {
   extensions_list = { "themes", "workspaces", "aerial" },
 }
 
+M.workspaces = {
+  cd_type = "tab",
+  hooks = {
+    open = function(name, _)
+      if name == "cp" then
+        require("gitsigns").detach()
+        return false
+      end
+    end,
+  },
+}
+
 -- git support and more in nvimtree
 M.nvimtree = {
   view = {
@@ -160,7 +172,7 @@ M.nvimtree = {
     },
   },
   filters = {
-    git_ignored = false,
+    -- git_ignored = false,
   },
   git = {
     disable_for_dirs = {
@@ -206,6 +218,21 @@ M.blankline = {
 }
 
 M.chadrc = {
+  tabufline = {
+    lazyload = false,
+    order = { "treeOffset", "buffers", "tabs", "btns" },
+    modules = {
+      btns = function()
+        local appname = vim.env.NVIM_APPNAME:gsub("nvim", ""):gsub("%-", "")
+        if appname == "" then
+          return ""
+        end
+        local btn = require("nvchad.tabufline.utils").btn
+        local toggle_theme = btn(appname, "ThemeToggleBtn", "Toggle_theme")
+        return toggle_theme
+      end,
+    },
+  },
   statusline = {
     theme = "default", -- default/vscode/vscode_colored/minimal
     order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "cwd", "lsp", "cursor", "copilot" },
@@ -214,8 +241,8 @@ M.chadrc = {
     modules = {
       lsp = function()
         local utils = require "nvchad.stl.utils"
-        if rawget(vim, "lsp") then
-          for _, client in ipairs(vim.lsp.get_active_clients()) do
+        if rawget(vim, "lsp") and vim.version().minor >= 10 then
+          for _, client in ipairs(vim.lsp.get_clients()) do
             if client.attached_buffers[utils.stbufnr()] and client.name ~= "copilot" then
               return (vim.o.columns > 100 and "%#st_lspicon#▍ ▐%#st_lsp#" .. client.name .. " ")
                 or "%#st_lspicon#▍ ▐"
@@ -229,8 +256,8 @@ M.chadrc = {
       end,
       copilot = function()
         local utils = require "nvchad.stl.utils"
-        if rawget(vim, "lsp") then
-          for _, client in ipairs(vim.lsp.get_active_clients()) do
+        if rawget(vim, "lsp") and vim.version().minor >= 10 then
+          for _, client in ipairs(vim.lsp.get_clients()) do
             if client.attached_buffers[utils.stbufnr()] and client.name == "copilot" then
               local c = require "copilot.client"
               return (c.is_disabled()) and "" or "%#St_CopilotSep# %#St_Copilot#  %#St_CopilotSep#▌"
