@@ -8,8 +8,8 @@ local highlights = require "highlights"
 local overrides = require "configs.overrides".chadrc
 
 M.ui = {
-  theme = "chadracula-evondev",
-  theme_toggle = { "chadracula-evondev", "everforest_light" },
+  theme = "everblush",
+  theme_toggle = { "everblush", "blossom_light" },
   cheatsheet = { theme = "grid" },
   transparency = false,
 
@@ -17,6 +17,7 @@ M.ui = {
   hl_add = highlights.add,
 
   statusline = overrides.statusline,
+  tabufline = overrides.tabufline,
   cmp = {
     style = "atom_colored", -- default/flat_light/flat_dark/atom/atom_colored
   },

@@ -48,15 +48,6 @@ map({ "n", "t" }, "<leader>h", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm", size = 0.3 }
 end, { desc = "Terminal New horizontal term" })
 
-map({ "n", "t" }, "<M-l>", function()
-  require("nvchad.term").toggle {
-    pos = "float",
-    id = "lazygit",
-    cmd = "lazygit; \n exit",
-    float_opts = { width = 0.9, height = 0.9 },
-  }
-end, { desc = "Terminal New lazygit" })
-
 --- remove default mappings
 
 unmap({ "n", "t" }, "<A-h>")

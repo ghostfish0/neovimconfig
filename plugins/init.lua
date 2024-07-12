@@ -1,6 +1,14 @@
 local overrides = require "configs.overrides"
 return {
   {
+    "xeluxee/competitest.nvim",
+    dependencies = "MunifTanjim/nui.nvim",
+    cmd = { "Competitest" },
+    config = function()
+      require("competitest").setup()
+    end,
+  },
+  {
     "LunarVim/bigfile.nvim",
     lazy = false,
     opts = overrides.bigfile,
@@ -26,7 +34,7 @@ return {
         end,
         desc = "CopilotChat - Quick chat",
       },
-      { ",,", "<cmd>CopilotChatToggle<cr>", mode = {"n", "v"}, desc = "CopilotChat - Toggle" },
+      { ",,", "<cmd>CopilotChatToggle<cr>", mode = { "n", "v" }, desc = "CopilotChat - Toggle" },
     },
     cmd = { "CopilotChat", "CopilotChatToggle" },
     dependencies = {
@@ -96,16 +104,8 @@ return {
   },
   {
     "natecraddock/workspaces.nvim",
-    cmd = {
-      "WorkspacesAdd",
-      "WorkspacesRemove",
-      "WorkspacesRename",
-      "WorkspacesList",
-      "WorkspacesOpen",
-      "WorkspacesSyncDirs",
-    },
     config = function()
-      require("workspaces").setup()
+      require("workspaces").setup(overrides.workspaces)
     end,
   },
   -- override plugin configs with setup function
