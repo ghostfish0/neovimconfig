@@ -155,7 +155,6 @@ return {
     "hrsh7th/nvim-cmp",
     opts = overrides.cmp,
     dependencies = {
-      { "hrsh7th/cmp-omni" },
       {
         "zbirenbaum/copilot-cmp",
         config = function()
