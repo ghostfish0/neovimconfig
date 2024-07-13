@@ -28,31 +28,33 @@ M.override = {
   St_pos_icon = { bg = "yellow", fg = "black" },
   NvimTreeRootFolder = { fg = "cyan", bold = false },
   TelescopeSelection = { bold = true },
+  Include = { fg = "dark_purple" },
 }
 
 ---@type HLTable
 M.add = {
+  ["@keyword.directive.cpp"] = { fg = "dark_purple" },
+  ["@keyword.directive.define.cpp"] = { fg = "dark_purple" },
+  ["@keyword.conditional.cpp"] = { fg = "green" },
+  ["@keyword.repeat.cpp"] = { fg = "sun" },
+  ["@operator.cpp"] = { fg = "cyan" },
+  ["@number.cpp"] = { fg = "white" },
+  ["@variable.cpp"] = { fg = "white" },
+  ["@constant.cpp"] = { italic = true, fg = "red" },
+  ["@constant.builtin.cpp"] = { italic = true, fg = "red" },
+  ["@character.cpp"] = { fg = "green" },
+  ["@function.call.cpp"] = { fg = "green" },
+  ["@string.escape.cpp"] = { fg = "dark_purple" },
+  ["@punctuation.bracket.cpp"] = { fg = "orange" },
+  ["@punctuation.delimiter.cpp"] = { fg = "orange" },
+
   ["@string.special.url.html"] = { fg = "blue" },
-  markdownRule = { fg = "cyan" },
-  markdownCodeblock = { fg = "orange" },
-  markdownCodeDelimiter = { fg = "vibrant_green" },
-  markdownBold = { fg = "cyan", bold = true },
-  DiagnosticUnnecessary = { fg = "purple", italic = true },
-  St_LspIcon = { bg = "cyan", fg = "black" },
-  St_Copilot = { bg = "vibrant_green", fg = "black" },
-  St_CopilotSep = { bg = "black", fg = "vibrant_green" },
-  St_CopilotDisabled = { bg = "black", fg = "red" },
-  CmpItemKindCopilot = { bg = "vibrant_green", fg = "black" },
-  IblIndent = { fg = "one_bg" },
-  IblScope = { fg = "grey" },
-  CursorLine = { bg = "white" },
   -- rainbow headers
   ["@markup.heading.1.markdown"] = { fg = "red", bold = true },
   ["@markup.heading.2.markdown"] = { fg = "orange", bold = true },
   ["@markup.heading.3.markdown"] = { fg = "yellow", bold = true },
   ["@markup.heading.4.markdown"] = { fg = "green", bold = true },
   ["@markup.heading.5.markdown"] = { fg = "blue", bold = true },
-  --
   ["@markup.link.label.markdown_inline"] = { fg = "yellow" },
   ["@lsp.type.class.markdown"] = { fg = "yellow" },
   ["@markup.link.url.markdown_inline"] = { italic = true, fg = "cyan", underline = false },
@@ -60,6 +62,10 @@ M.add = {
   ["@punctuation.delimiter.markdown_inline"] = { fg = "grey_fg" },
   ["@conceal.markdown_inline"] = { fg = "grey_fg" },
   ["@punctuation.special.markdown"] = { fg = "cyan" },
+  markdownRule = { fg = "cyan" },
+  markdownCodeblock = { fg = "orange" },
+  markdownCodeDelimiter = { fg = "vibrant_green" },
+  markdownBold = { fg = "cyan", bold = true },
   --
   TreesitterContext = { bg = "black" },
   TreesitterContextSeparator = { fg = "cyan" },
@@ -68,6 +74,16 @@ M.add = {
   NvimTreeCutHL = { underline = true },
   AerialNormal = { fg = "green" },
   helpExample = M.markdownCodeblock,
+  St_LspIcon = { bg = "cyan", fg = "black" },
+  St_Copilot = { bg = "vibrant_green", fg = "black" },
+  St_CopilotSep = { bg = "black", fg = "vibrant_green" },
+  St_CopilotDisabled = { bg = "black", fg = "red" },
+  CmpItemKindCopilot = { bg = "vibrant_green", fg = "black" },
+  DiagnosticUnnecessary = { fg = "purple", italic = true },
+  IblIndent = { fg = "one_bg" },
+  IblScope = { fg = "grey" },
+  CursorLine = { bg = "white" },
+
 }
 
 return M

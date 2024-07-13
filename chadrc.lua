@@ -8,8 +8,8 @@ local highlights = require "highlights"
 local overrides = require "configs.overrides".chadrc
 
 M.ui = {
-  theme = "everblush",
-  theme_toggle = { "everblush", "blossom_light" },
+  theme = "chocolate",
+  theme_toggle = { "gruvbox", "chocolate" },
   cheatsheet = { theme = "grid" },
   transparency = false,
 
