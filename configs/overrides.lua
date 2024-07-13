@@ -288,9 +288,9 @@ M.chadrc = {
 local cmp = require("cmp")
 M.cmp = {
   sources = {
+    { name = "luasnip"},
     { name = "copilot" },
     { name = "nvim_lsp" },
-    { name = "luasnip", option = { use_show_condition = true } },
     { name = "buffer" },
     { name = "nvim_lua" },
     { name = "path" },
@@ -311,6 +311,14 @@ M.cmp = {
         fallback()
       end
     end, { "i", "s" }),
+  }
+}
+
+M.cmpcpp = {
+  sources = {
+    { name = "luasnip", priority = "1000000" },
+    { name = "buffer" },
+    { name = "path" },
   }
 }
 
