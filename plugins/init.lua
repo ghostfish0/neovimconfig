@@ -165,7 +165,7 @@ return {
     },
     config = function(_, opts)
       require("cmp").setup(opts)
-      require("cmp").setup.filetype("markdown", overrides.cmpmarkdown)
+      require("cmp").setup.filetype("cpp", overrides.cmpcpp)
     end,
   },
   -- override plugin configs
