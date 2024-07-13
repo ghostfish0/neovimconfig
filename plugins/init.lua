@@ -3,15 +3,11 @@ return {
   {
     "xeluxee/competitest.nvim",
     dependencies = "MunifTanjim/nui.nvim",
-    cmd = { "Competitest" },
+    -- lazy load via workspace.nvim's hooks
+    lazy = true,
     config = function()
-      require("competitest").setup()
+      require("competitest").setup(overrides.competitest)
     end,
-  },
-  {
-    "LunarVim/bigfile.nvim",
-    lazy = false,
-    opts = overrides.bigfile,
   },
   {
     "max397574/better-escape.nvim",
@@ -43,6 +39,10 @@ return {
       { "nvim-treesitter/nvim-treesitter" },
     },
     opts = overrides.copilotchat,
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = overrides.gitsigns,
   },
   {
     "jbyuki/venn.nvim",
@@ -140,7 +140,7 @@ return {
       vim.keymap.set(
         "n",
         "<Leader>L",
-        '<Cmd>lua   require("luasnip.loaders.from_lua").lazy_load({paths = "./lua/snippetsmath"}) require("luasnip.loaders.from_vscode").lazy_load()  print "Snippets reloaded 👍"<CR>'
+        '<Cmd>lua   require("luasnip.loaders.from_lua").lazy_load({paths = "./lua/snippetsmath"}) require("luasnip.loaders.from_vscode").lazy_load()  print "Math snippets loaded 👍"<CR>'
       )
     end,
   },

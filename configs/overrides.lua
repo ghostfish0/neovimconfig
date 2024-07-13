@@ -1,5 +1,13 @@
 local M = {}
 
+M.competitest = {
+  runner_ui = {
+    interface = "split",
+  },
+  compile_command = { cpp = { exec = "g++", args = { "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } }, },
+  testcases_directory = "./testcases",
+}
+
 M.context = {
   max_lines = 5, -- How many lines the window should span. Values <= 0 mean no limit.
   separator = "·",
@@ -156,11 +164,15 @@ M.workspaces = {
   hooks = {
     open = function(name, _)
       if name == "cp" then
-        require("gitsigns").detach()
+        require("competitest").setup()
         return false
       end
     end,
   },
+}
+
+M.gitsigns = {
+  auto_attach = false,
 }
 
 -- git support and more in nvimtree
@@ -277,6 +289,7 @@ M.chadrc = {
   },
 }
 
+local cmp = require("cmp")
 M.cmp = {
   sources = {
     { name = "copilot" },
@@ -286,6 +299,23 @@ M.cmp = {
     { name = "nvim_lua" },
     { name = "path" },
   },
+  mapping = {
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if require("luasnip").expand_or_jumpable() then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if require("luasnip").jumpable(-1) then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+  }
 }
 
 return M
