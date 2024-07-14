@@ -1,12 +1,14 @@
 require "nvchad.options"
 
-local opt = vim.o
+local o = vim.o
+local g = vim.g
 local api = vim.api
 -- linebreaking and make sure linebreak follows indent
 local new_cmd = api.nvim_create_user_command
-opt.linebreak = true
-opt.breakindent = true
-opt.cursorline = false
+o.linebreak = true
+o.breakindent = true
+o.cursorline = false
+g.loaded_matchparen = 1
 
 vim.cmd [[
     let &shell = executable('pwsh') ? 'pwsh' : 'powershell -NoLogo'
