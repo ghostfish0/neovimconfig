@@ -9,17 +9,14 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("n", ";", ":", { desc = "Enter command mode", nowait = true })
 
 -- navigation mappings
-map("i", "<C-Left>", "<cmd>tabn<CR>", { desc = "Next tab" })
-map("i", "<C-Right>", "<cmd>tabp<CR>", { desc = "Previous tab" })
-map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { desc = "move line down" })
 map("n", "<leader>wo", "<cmd> Telescope workspaces <CR>", { desc = "Open workspace" })
 map("n", "j", "gj")
 map("n", "k", "gk")
 
 -- editing mappings
 map("n", "E", "$", { desc = "Goto end of line", remap = true })
-map({ "n", "v", "i" }, "<C-Left>", ":tabn<cr>", { desc = "Next tab" })
-map({ "n", "v", "i" }, "<C-Right>", ":tabp<cr>", { desc = "Previous tab" })
+map({ "n", "v", "i" }, "<C-Left>", "<cmd>tabn<cr>", { desc = "Next tab" })
+map({ "n", "v", "i" }, "<C-Right>", "<cmd>tabp<cr>", { desc = "Previous tab" })
 
 -- move line down/up
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
