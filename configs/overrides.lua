@@ -4,7 +4,7 @@ M.competitest = {
   runner_ui = {
     interface = "split",
   },
-  compile_command = { cpp = { exec = "g++", args = { "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } }, },
+  compile_command = { cpp = { exec = "g++", args = { "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } } },
   testcases_directory = "./testcases",
 }
 
@@ -246,7 +246,22 @@ M.chadrc = {
     order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "cwd", "lsp", "cursor", "copilot" },
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
+    separator_style = "block",
     modules = {
+      mode = function()
+        local utils = require "nvchad.stl.utils"
+        if not utils.is_activewin() then
+          return ""
+        end
+
+        local modes = utils.modes
+
+        local m = vim.api.nvim_get_mode().mode
+
+        local current_mode = "%#St_" .. modes[m][2] .. "Mode# " .. modes[m][1] .. " "
+
+        return current_mode
+      end,
       lsp = function()
         local utils = require "nvchad.stl.utils"
         if rawget(vim, "lsp") and vim.version().minor >= 10 then
@@ -274,21 +289,14 @@ M.chadrc = {
         end
         return ""
       end,
-      -- cwd = function()
-      --   local file = require("nvchad.stl.utils").file()
-      --   local name = vim.loop.cwd()
-      --   name = name:match "([^/\\]+)[/\\]*$" or name
-      --   return "%#St_cwd_text# " .. file[1] .. " " .. name .. "/" .. file[2] .. " "
-      -- end,
     },
-    separator_style = "block",
   },
 }
 
-local cmp = require("cmp")
+local cmp = require "cmp"
 M.cmp = {
   sources = {
-    { name = "luasnip"},
+    { name = "luasnip" },
     { name = "copilot" },
     { name = "nvim_lsp" },
     { name = "buffer" },
@@ -311,7 +319,7 @@ M.cmp = {
         fallback()
       end
     end, { "i", "s" }),
-  }
+  },
 }
 
 M.cmpcpp = {
@@ -319,7 +327,7 @@ M.cmpcpp = {
     { name = "luasnip", priority = "1000000" },
     { name = "buffer" },
     { name = "path" },
-  }
+  },
 }
 
 return M
