@@ -9,6 +9,11 @@ o.linebreak = true
 o.breakindent = true
 o.cursorline = false
 g.loaded_matchparen = 1
+g.matchup_matchparen_deferred = 1
+g.matchup_matchparen_hi_surround_always = 1
+g.matchup_motion_override_Npercent = 0
+g.matchup_matchparen_timeout = 200
+g.matchup_matchparen_insert_timeout = 60
 
 vim.cmd [[
     let &shell = executable('pwsh') ? 'pwsh' : 'powershell -NoLogo'
