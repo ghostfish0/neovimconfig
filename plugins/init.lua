@@ -1,6 +1,13 @@
 local overrides = require "configs.overrides"
 return {
   {
+    "andymass/vim-matchup",
+    lazy = false,
+    config = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    end,
+  },
+  {
     "xeluxee/competitest.nvim",
     dependencies = "MunifTanjim/nui.nvim",
     -- lazy load via workspace.nvim's hooks
