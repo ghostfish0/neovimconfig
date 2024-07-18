@@ -10,7 +10,9 @@ M.override = {
   ["@comment"] = { italic = true },
   Identifier = { bold = true },
   ["@markup.heading"] = { bold = true },
-  ["MatchParen"] = { bg = "red" },
+  MatchParen = { fg = "NONE", bg = "one_bg2" },
+  MatchParenCur = { fg = "NONE", bg = "one_bg2" },
+  MatchWord = { fg = "NONE", bg = "one_bg2" },
   ["@markup.strong"] = { fg = "red", bold = true },
   ["@markup.italic"] = { fg = "yellow", italic = true },
   ["@markup.strikethrough"] = { underline = true, italic = true, fg = "red" },
@@ -81,9 +83,7 @@ M.add = {
   CmpItemKindCopilot = { bg = "vibrant_green", fg = "black" },
   DiagnosticUnnecessary = { fg = "purple", italic = true },
   IblIndent = { fg = "one_bg" },
-  IblScope = { fg = "grey" },
   CursorLine = { bg = "white" },
-
 }
 
 return M

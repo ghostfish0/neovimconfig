@@ -86,6 +86,10 @@ M.copilot = {
 }
 
 M.treesitter = {
+  matchup = {
+    enable = true,
+    disable = { "c", "ruby" },
+  },
   ensure_installed = {
     "vim",
     -- lua stuff
