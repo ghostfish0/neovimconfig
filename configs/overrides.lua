@@ -88,7 +88,8 @@ M.copilot = {
 M.treesitter = {
   matchup = {
     enable = true,
-    disable = { "c", "ruby" },
+    disable = { "c", "ruby", "help" },
+    disable_virtual_text = true,
   },
   ensure_installed = {
     "vim",

@@ -5,6 +5,7 @@ local g = vim.g
 local api = vim.api
 -- linebreaking and make sure linebreak follows indent
 local new_cmd = api.nvim_create_user_command
+
 o.linebreak = true
 o.breakindent = true
 o.cursorline = false
@@ -14,6 +15,19 @@ g.matchup_matchparen_hi_surround_always = 1
 g.matchup_motion_override_Npercent = 0
 g.matchup_matchparen_timeout = 200
 g.matchup_matchparen_insert_timeout = 60
+g.matchup_delim_noskips = 2
+g.matchup_matchparen_stopline = 50
+g.matchup_matchparen_offscreen = {}
+g.matchup_surround_enabled = 1
+g.matchup_matchparen_fallback = 0
+
+vim.cmd [[ 
+    augroup matchup_matchparen_disable_ft
+      autocmd!
+      autocmd FileType lazy,help let [b:matchup_matchparen_fallback,
+          \ b:matchup_matchparen_enabled] = [0, 0]
+    augroup END
+]]
 
 vim.cmd [[
     let &shell = executable('pwsh') ? 'pwsh' : 'powershell -NoLogo'

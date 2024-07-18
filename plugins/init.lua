@@ -183,7 +183,10 @@ return {
     "williamboman/mason.nvim",
     opts = overrides.mason,
   },
-  { "nvim-treesitter/nvim-treesitter", opts = overrides.treesitter },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = overrides.treesitter,
+  },
   {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
