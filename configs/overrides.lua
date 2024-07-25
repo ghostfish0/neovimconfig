@@ -188,6 +188,11 @@ M.nvimtree = {
       max = "25%",
     },
   },
+  actions = {
+    open_file = {
+      resize_window = false,
+    },
+  },
   filters = {
     -- git_ignored = false,
   },
@@ -252,7 +257,7 @@ M.chadrc = {
   },
   statusline = {
     theme = "default", -- default/vscode/vscode_colored/minimal
-    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "cwd", "lsp", "cursor", "copilot" },
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cursor", "copilot" },
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
     separator_style = "block",

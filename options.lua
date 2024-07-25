@@ -38,9 +38,9 @@ vim.cmd [[
 ]]
 
 new_cmd("Time", 'echo strftime("%F %X")', {})
-new_cmd("Todo", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/i-passi-della-conquista-del-mondo.md", {})
-new_cmd("Codethings", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/code.md", {})
-new_cmd("Calendar", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/calendario.md", {})
+new_cmd("Todo", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/markdowns/i-passi-della-conquista-del-mondo.md", {})
+new_cmd("Codethings", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/markdowns/code.md", {})
+new_cmd("Calendar", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/markdowns/calendario.md", {})
 new_cmd("WhereAmI", ':lua print(vim.fn.expand("%:p"))', {})
 new_cmd("NablaToggle", 'lua require("nabla").toggle_virt()', {})
 

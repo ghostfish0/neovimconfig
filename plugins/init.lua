@@ -1,6 +1,10 @@
 local overrides = require "configs.overrides"
 return {
   {
+    "chrisgrieser/nvim-spider",
+    lazy = true,
+  },
+  {
     "andymass/vim-matchup",
     lazy = false,
     config = function()
