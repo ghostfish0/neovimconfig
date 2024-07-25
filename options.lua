@@ -18,6 +18,7 @@ g.matchup_delim_noskips = 2
 g.matchup_matchparen_stopline = 50
 g.matchup_matchparen_offscreen = {}
 g.matchup_surround_enabled = 1
+g.matchup_motion_enabled = 0
 g.matchup_matchparen_fallback = 0
 
 vim.cmd [[ 
