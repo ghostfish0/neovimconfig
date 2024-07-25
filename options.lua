@@ -5,7 +5,6 @@ local g = vim.g
 local api = vim.api
 -- linebreaking and make sure linebreak follows indent
 local new_cmd = api.nvim_create_user_command
-
 o.linebreak = true
 o.breakindent = true
 o.cursorline = false
