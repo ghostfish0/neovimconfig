@@ -303,6 +303,12 @@ M.chadrc = {
         end
         return ""
       end,
+      -- cwd = function()
+      --   local file = require("nvchad.stl.utils").file()
+      --   local name = vim.loop.cwd()
+      --   name = name:match "([^/\\]+)[/\\]*$" or name
+      --   return "%#St_cwd_text# " .. file[1] .. " " .. name .. "/" .. file[2] .. " "
+      -- end,
     },
   },
 }
