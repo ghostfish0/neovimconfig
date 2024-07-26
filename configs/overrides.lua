@@ -88,7 +88,8 @@ M.copilot = {
 M.treesitter = {
   matchup = {
     enable = true,
-    disable = { "c", "ruby" },
+    disable = { "c", "ruby", "help" },
+    disable_virtual_text = true,
   },
   ensure_installed = {
     "vim",
@@ -175,12 +176,21 @@ M.workspaces = {
   },
 }
 
+M.gitsigns = {
+  auto_attach = false,
+}
+
 -- git support and more in nvimtree
 M.nvimtree = {
   view = {
     cursorline = false,
     width = {
       max = "25%",
+    },
+  },
+  actions = {
+    open_file = {
+      resize_window = false,
     },
   },
   filters = {
@@ -231,7 +241,6 @@ M.blankline = {
 
 M.chadrc = {
   tabufline = {
-    lazyload = false,
     order = { "treeOffset", "buffers", "tabs", "btns" },
     modules = {
       btns = function()
@@ -247,7 +256,7 @@ M.chadrc = {
   },
   statusline = {
     theme = "default", -- default/vscode/vscode_colored/minimal
-    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "cwd", "lsp", "cursor", "copilot" },
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cursor", "copilot" },
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
     separator_style = "block",

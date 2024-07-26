@@ -14,7 +14,6 @@ map("n", "j", "gj")
 map("n", "k", "gk")
 
 -- editing mappings
-map("n", "E", "$", { desc = "Goto end of line", remap = true })
 map({ "n", "v", "i" }, "<C-Left>", "<cmd>tabn<cr>", { desc = "Next tab" })
 map({ "n", "v", "i" }, "<C-Right>", "<cmd>tabp<cr>", { desc = "Previous tab" })
 
@@ -45,8 +44,12 @@ map({ "n", "t" }, "<leader>h", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm", size = 0.3 }
 end, { desc = "Terminal New horizontal term" })
 
---- remove default mappings
+-- spider
+map({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>")
+map({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>")
+map({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>")
 
+--- remove default mappings
 unmap({ "n", "t" }, "<A-h>")
 unmap({ "n", "t" }, "<A-v>")
 unmap("n", "<C-n>")
