@@ -176,10 +176,6 @@ M.workspaces = {
   },
 }
 
-M.gitsigns = {
-  auto_attach = false,
-}
-
 -- git support and more in nvimtree
 M.nvimtree = {
   view = {
