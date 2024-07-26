@@ -241,7 +241,6 @@ M.blankline = {
 
 M.chadrc = {
   tabufline = {
-    lazyload = false,
     order = { "treeOffset", "buffers", "tabs", "btns" },
     modules = {
       btns = function()
