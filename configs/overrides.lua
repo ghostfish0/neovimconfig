@@ -144,9 +144,6 @@ M.mason = {
     -- python stuff
     "black",
     "pyright",
-
-    -- note-taking stuff
-    "marksman",
   },
 }
 
