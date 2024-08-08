@@ -8,6 +8,7 @@ local unmap = vim.keymap.del
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("n", ";", ":", { desc = "Enter command mode", nowait = true })
 
+
 -- navigation mappings
 map("n", "<leader>wo", "<cmd> Telescope workspaces <CR>", { desc = "Open workspace" })
 map("n", "j", "gj")
@@ -55,3 +56,7 @@ unmap({ "n", "t" }, "<A-v>")
 unmap("n", "<C-n>")
 unmap("n", "<leader>wk")
 unmap("n", "<leader>wK")
+unmap("n", "<leader>e")
+
+--- redefine default mappings
+map("n", "<leader>e", "<cmd>Telescope file_browser<cr>")

@@ -159,6 +159,12 @@ M.telescope = {
     },
   },
   extensions_list = { "themes", "workspaces", "aerial" },
+  extensions = {
+    file_browser = {
+      initial_mode = "normal",
+      hijack_netrw = true,
+    },
+  },
 }
 
 M.workspaces = {
