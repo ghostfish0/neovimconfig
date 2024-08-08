@@ -178,6 +178,7 @@ M.workspaces = {
 
 -- git support and more in nvimtree
 M.nvimtree = {
+  hijack_cursor = false,
   view = {
     cursorline = false,
     width = {
