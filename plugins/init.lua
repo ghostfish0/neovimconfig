@@ -3,42 +3,7 @@ return {
   {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-    config = function()
-      require("telescope").load_extension "file_browser"
-      local fb = require("telescope").extensions.file_browser.actions
-      require("telescope").setup {
-        extensions = {
-          file_browser = {
-            layout_config = { height = 0.4 },
-            theme = "ivy",
-            hijack_netrw = true,
-            grouped = true,
-            select_buffer = true,
-            hide_parent_dir = true,
-            quiet = true,
-            dir_icon = "",
-            dir_icon_hl = "@function",
-            display_stat = {},
-            mappings = {
-              ["i"] = {
-                ["<C-a>"] = fb.create,
-                ["<C-e>"] = fb.rename,
-                ["<C-x>"] = fb.move,
-                ["<C-l>"] = require('telescope.actions').select_default,
-                ["<C-h>"] = fb.goto_parent_dir,
-              },
-              ["n"] = {
-                a = fb.create,
-                e = fb.rename,
-                x = fb.move,
-                l = require('telescope.actions').select_default,
-                h = fb.goto_parent_dir,
-              },
-            },
-          },
-        },
-      }
-    end,
+    config = overrides.telescopefb,
   },
   {
     "ms-jpq/chadtree",
