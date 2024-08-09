@@ -59,4 +59,5 @@ unmap("n", "<leader>wK")
 unmap("n", "<leader>e")
 
 --- redefine default mappings
-map("n", "<leader>e", "<cmd>Telescope file_browser<cr>")
+map("n", "<leader>fb", "<cmd>Telescope file_browser<cr>")
+map("n", "<space>e", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
