@@ -188,6 +188,7 @@ M.telescopefb = function()
         display_stat = {},
         git_status = true,
         prompt_path = true,
+        hidden = false,
         mappings = {
           ["i"] = {
             ["<C-a>"] = fb.create,
@@ -202,6 +203,8 @@ M.telescopefb = function()
             x = fb.move,
             l = require("telescope.actions").select_default,
             h = fb.goto_parent_dir,
+            c = fb.copy,
+            ["."] = fb.toggle_hidden,
           },
         },
       },
