@@ -92,6 +92,7 @@ M.treesitter = {
     disable_virtual_text = true,
   },
   ensure_installed = {
+    "java",
     "vim",
     -- lua stuff
     "lua",
@@ -120,33 +121,6 @@ M.treesitter = {
     -- disable = {
     --   "python"
     -- },
-  },
-}
-
-M.mason = {
-  ensure_installed = {
-    -- lua stuff
-    "lua-language-server",
-    "stylua",
-
-    -- web dev stuff
-    "css-lsp",
-    "html-lsp",
-    "typescript-language-server",
-    "prettier",
-
-    -- c/cpp stuff
-    "clangd",
-    "clang-format",
-    "glsl_analyzer",
-    "rust_analyzer",
-
-    -- python stuff
-    "black",
-    "pyright",
-
-    -- note-taking stuff
-    "marksman",
   },
 }
 
@@ -301,7 +275,7 @@ M.chadrc = {
   },
   statusline = {
     theme = "default", -- default/vscode/vscode_colored/minimal
-    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cursor", "copilot" },
+    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "cwd", "lsp", "cursor", "copilot" },
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
     separator_style = "block",
