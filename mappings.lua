@@ -34,16 +34,19 @@ map("n", "<A-S-j>", ":t .<CR>==", { desc = "Copy line up" })
 
 -- other mappings
 map("n", "<leader>th", "<cmd>lua require('base46').toggle_theme()<cr>", { desc = "Toggle theme" })
-map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "NvimTree Toggle window" })
 
 -- terminal mappings
-map({ "n", "t" }, "<leader>v", function()
+map({ "n"}, "<leader>v", function()
   require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm", size = 0.3 }
 end, { desc = "Terminal Toggleable vertical term" })
 
-map({ "n", "t" }, "<leader>h", function()
+map({ "n"}, "<leader>h", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm", size = 0.3 }
 end, { desc = "Terminal New horizontal term" })
+
+map({ "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+map({ "t" }, "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Exit terminal mode" })
+map({ "t" }, "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Exit terminal mode" })
 
 -- spider
 -- map({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>")
@@ -59,5 +62,5 @@ unmap("n", "<leader>wK")
 unmap("n", "<leader>e")
 
 --- redefine default mappings
-map("n", "<leader>fb", "<cmd>Telescope file_browser<cr>")
-map("n", "<space>e", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>")
+map("n", "<leader>e", "<cmd>Telescope file_browser<cr>")
+map("n", "<space>fb", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>")
