@@ -43,7 +43,7 @@ M.aerial = {
 
 M.peek = {
   auto_load = false, -- whether to automatically load preview when entering another markdown buffer
-  syntax = false, -- enable syntax highlighting, affects performance
+  syntax = true, -- enable syntax highlighting, affects performance
   app = "browser", -- 'webview', 'browser', string or a table of strings explained below
   filetype = { "markdown" }, -- list of filetypes to recognize as markdown
 }
