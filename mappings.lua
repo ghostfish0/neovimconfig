@@ -46,9 +46,9 @@ map({ "n", "t" }, "<leader>h", function()
 end, { desc = "Terminal New horizontal term" })
 
 -- spider
-map({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>")
-map({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>")
-map({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>")
+-- map({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>")
+-- map({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>")
+-- map({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>")
 
 --- remove default mappings
 unmap({ "n", "t" }, "<A-h>")
