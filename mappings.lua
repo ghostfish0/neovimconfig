@@ -45,8 +45,13 @@ map({ "n"}, "<leader>h", function()
 end, { desc = "Terminal New horizontal term" })
 
 map({ "t" }, "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-map({ "t" }, "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Exit terminal mode" })
-map({ "t" }, "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Exit terminal mode" })
+map({ "t" }, "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Terminal go up" })
+map({ "t" }, "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Terminal go left" })
+map({ "n" }, "q", function()  -- workaround for normal-terminal mode
+  if vim.bo.buftype == 'terminal' then
+    vim.cmd('q')
+  end
+end, { desc = "Close terminal" })
 
 -- spider
 -- map({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>")
