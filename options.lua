@@ -7,7 +7,7 @@ local api = vim.api
 local new_cmd = api.nvim_create_user_command
 o.linebreak = true
 o.breakindent = true
-o.cursorline = false
+-- o.number = false
 g.loaded_matchparen = 1
 g.matchup_matchparen_deferred = 1
 g.matchup_matchparen_hi_surround_always = 1
@@ -29,16 +29,19 @@ vim.cmd [[
     augroup END
 ]]
 
-vim.cmd [[
-    let &shell = executable('pwsh') ? 'pwsh' : 'powershell -NoLogo'
-		let &shellcmdflag = '-Command'
-		let &shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
-		let &shellpipe  = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
-		set shellquote= shellxquote=
-]]
+vim.o.shell = 'pwsh.exe'
+vim.o.shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues["Out-File:Encoding"]="utf8";Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
+vim.o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+vim.o.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
+vim.o.shellquote = ''
+vim.o.shellxquote = ''
 
 new_cmd("Time", 'echo strftime("%F %X")', {})
-new_cmd("Todo", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/markdowns/i-passi-della-conquista-del-mondo.md", {})
+new_cmd(
+  "Todo",
+  ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/markdowns/i-passi-della-conquista-del-mondo.md",
+  {}
+)
 new_cmd("Codethings", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/markdowns/code.md", {})
 new_cmd("Calendar", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/markdowns/calendario.md", {})
 new_cmd("WhereAmI", ':lua print(vim.fn.expand("%:p"))', {})
