@@ -43,6 +43,19 @@ new_cmd("Codethings", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/ma
 new_cmd("Calendar", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/markdowns/calendario.md", {})
 new_cmd("WhereAmI", ':lua print(vim.fn.expand("%:p"))', {})
 new_cmd("NablaToggle", 'lua require("nabla").toggle_virt()', {})
+new_cmd("Peek", ':lua require("peek").open()<CR>', {})
+new_cmd("JavaRun", function()
+  require("nvchad.term").runner {
+    pos = "sp",
+    id = "javarun",
+    clear_cmd = false,
+    cmd = function()
+      vim.cmd "w"
+      local file = vim.fn.expand "%:r"
+      return "javac " .. file .. ".java; java " .. file .. "; exit"
+    end,
+  }
+end, {})
 
 -- lua snippets
 vim.g.lua_snippets_path = vim.fn.stdpath "config" .. "\\lua\\snippets"

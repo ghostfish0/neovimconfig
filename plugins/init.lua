@@ -1,5 +1,7 @@
 local overrides = require "configs.overrides"
 return {
+  {"seandewar/killersheep.nvim", cmd = "KillKillKill"},
+  {"seandewar/nvimesweeper", cmd = "Nvimesweeper"},
   {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
@@ -16,12 +18,13 @@ return {
     "nvim-tree/nvim-tree.lua",
     enabled = false,
   },
+  -- {
+  --   "chrisgrieser/nvim-spider",
+  --   lazy = true, -- set in mappings.lua
+  -- },
   {
-    "chrisgrieser/nvim-spider",
-    lazy = true, -- set in mappings.lua
-  },
-  {
-    "andymass/vim-matchup",
+    "ghostfish0/vim-matchup",
+    -- enabled = false,
     event = "User FilePost",
     config = function()
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
@@ -29,6 +32,7 @@ return {
   },
   {
     "xeluxee/competitest.nvim",
+    cmd = "CompetiTest",
     dependencies = "MunifTanjim/nui.nvim",
     -- lazy load via workspace.nvim's hooks
     lazy = true,
@@ -102,9 +106,9 @@ return {
   },
   {
     "saimo/peek.nvim",
-    enabled = false,
+    -- enabled = false,
     build = "deno task --quiet build:fast",
-    keys = { { "<leader>pp", ':lua require("peek").open()<CR>', "Peek markdown" } },
+    cmd = { "Peek" },
     config = function()
       require("peek").setup(overrides.peek)
     end,

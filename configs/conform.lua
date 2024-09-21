@@ -4,6 +4,7 @@ local options = {
     css = { "prettier" },
     html = { "prettier" },
     json = { "prettier" },
+    java = { "clang-format" },
   },
 
   -- format_on_save = {
