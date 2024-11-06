@@ -1,4 +1,56 @@
 local M = {}
+local separators = {
+  default = { left = "", right = "" },
+  round = { left = "", right = "" },
+  block = { left = "█", right = "█" },
+  arrow = { left = "", right = "" },
+}
+local sep_l = separators["default"]["left"]
+local sep_r = separators["default"]["right"]
+local modes = {
+  ["n"] = { "通常", "Normal" },
+  ["no"] = { "通常 (no)", "Normal" },
+  ["nov"] = { "通常 (nov)", "Normal" },
+  ["noV"] = { "通常 (noV)", "Normal" },
+  ["noCTRL-V"] = { "通常", "Normal" },
+  ["niI"] = { "通常 i", "Normal" },
+  ["niR"] = { "通常 r", "Normal" },
+  ["niV"] = { "通常 v", "Normal" },
+  ["nt"] = { "N端末", "NTerminal" },
+  ["ntT"] = { "NTERMINAL (ntT)", "NTerminal" },
+
+  ["v"] = { "視覚", "Visual" },
+  ["vs"] = { "視覚-CHAR (Ctrl O)", "Visual" },
+  ["V"] = { "視覚-LINE", "Visual" },
+  ["Vs"] = { "視覚-LINE", "Visual" },
+  [""] = { "視覚-BLOCK", "Visual" },
+
+  ["i"] = { "入力", "Insert" },
+  ["ic"] = { "入力 (completion)", "Insert" },
+  ["ix"] = { "入力 completion", "Insert" },
+
+  ["t"] = { "端末", "Terminal" },
+
+  ["R"] = { "REPLACE", "Replace" },
+  ["Rc"] = { "REPLACE (Rc)", "Replace" },
+  ["Rx"] = { "REPLACEa (Rx)", "Replace" },
+  ["Rv"] = { "V-REPLACE", "Replace" },
+  ["Rvc"] = { "V-REPLACE (Rvc)", "Replace" },
+  ["Rvx"] = { "V-REPLACE (Rvx)", "Replace" },
+
+  ["s"] = { "SELECT", "Select" },
+  ["S"] = { "S-LINE", "Select" },
+  [""] = { "S-BLOCK", "Select" },
+  ["c"] = { "コマンド", "Command" },
+  ["cv"] = { "コマンド", "Command" },
+  ["ce"] = { "コマンド", "Command" },
+  ["cr"] = { "コマンド", "Command" },
+  ["r"] = { "PROMPT", "Confirm" },
+  ["rm"] = { "MORE", "Confirm" },
+  ["r?"] = { "CONFIRM", "Confirm" },
+  ["x"] = { "CONFIRM", "Confirm" },
+  ["!"] = { "SHELL", "Terminal" },
+}
 
 M.competitest = {
   runner_ui = {
@@ -147,6 +199,20 @@ M.telescope = {
 M.telescopefb = function()
   require("telescope").load_extension "file_browser"
   local fb = require("telescope").extensions.file_browser.actions
+  local select_one_or_multi = function(prompt_bufnr)
+    local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+    local multi = picker:get_multi_selection()
+    if not vim.tbl_isempty(multi) then
+      require("telescope.actions").close(prompt_bufnr)
+      for _, j in pairs(multi) do
+        if j.path ~= nil then
+          vim.cmd(string.format("%s %s", "edit", j.path))
+        end
+      end
+    else
+      require("telescope.actions").select_default(prompt_bufnr)
+    end
+  end
   require("telescope").setup {
     extensions = {
       file_browser = {
@@ -160,6 +226,7 @@ M.telescopefb = function()
         dir_icon_hl = "@function",
         display_stat = {},
         git_status = true,
+        respect_gitignore = true,
         prompt_path = true,
         hidden = false,
         mappings = {
@@ -167,16 +234,19 @@ M.telescopefb = function()
             ["<C-a>"] = fb.create,
             ["<C-e>"] = fb.rename,
             ["<C-x>"] = fb.move,
-            ["<C-l>"] = require("telescope.actions").select_default,
+            ["<C-l>"] = select_one_or_multi,
             ["<C-h>"] = fb.goto_parent_dir,
+            ["<C-g>"] = fb.toggle_respect_gitignore,
+            ["<C-.>"] = fb.toggle_hidden,
           },
           ["n"] = {
             a = fb.create,
             e = fb.rename,
             x = fb.move,
-            l = require("telescope.actions").select_default,
+            l = select_one_or_multi,
             h = fb.goto_parent_dir,
             c = fb.copy,
+            g = fb.toggle_respect_gitignore,
             ["."] = fb.toggle_hidden,
           },
         },
@@ -253,75 +323,10 @@ M.nvimtree = {
 M.blankline = {
   scope = {
     show_start = false,
+    show_end = false,
   },
 }
 
-M.chadrc = {
-  tabufline = {
-    order = { "treeOffset", "buffers", "tabs", "btns" },
-    modules = {
-      btns = function()
-        local appname = vim.env.NVIM_APPNAME:gsub("nvim", ""):gsub("%-", "")
-        if appname == "" then
-          return ""
-        end
-        local btn = require("nvchad.tabufline.utils").btn
-        local toggle_theme = btn(appname, "ThemeToggleBtn", "Toggle_theme")
-        return toggle_theme
-      end,
-    },
-  },
-  statusline = {
-    theme = "default", -- default/vscode/vscode_colored/minimal
-    order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "cwd", "lsp", "cursor", "copilot" },
-    -- default/round/block/arrow separators work only for default statusline theme
-    -- round and block will work for minimal theme only
-    separator_style = "block",
-    modules = {
-      mode = function()
-        local utils = require "nvchad.stl.utils"
-        if not utils.is_activewin() then
-          return ""
-        end
-
-        local modes = utils.modes
-
-        local m = vim.api.nvim_get_mode().mode
-
-        local current_mode = "%#St_" .. modes[m][2] .. "Mode# " .. modes[m][1] .. " "
-
-        return current_mode
-      end,
-      lsp = function()
-        local utils = require "nvchad.stl.utils"
-        if rawget(vim, "lsp") and vim.version().minor >= 10 then
-          for _, client in ipairs(vim.lsp.get_clients()) do
-            if client.attached_buffers[utils.stbufnr()] and client.name ~= "copilot" then
-              return (vim.o.columns > 100 and "%#st_lspicon#▍ ▐%#st_lsp#" .. client.name .. " ")
-                or "%#st_lspicon#▍ ▐"
-            end
-          end
-        end
-        return ""
-      end,
-      cursor = function()
-        return "%#St_pos_icon#▍ %#St_Pos_text# %p%% "
-      end,
-      copilot = function()
-        local utils = require "nvchad.stl.utils"
-        if rawget(vim, "lsp") and vim.version().minor >= 10 then
-          for _, client in ipairs(vim.lsp.get_clients()) do
-            if client.attached_buffers[utils.stbufnr()] and client.name == "copilot" then
-              local c = require "copilot.client"
-              return (c.is_disabled()) and "" or "%#St_CopilotSep# %#St_Copilot#  %#St_CopilotSep#▌"
-            end
-          end
-        end
-        return ""
-      end,
-    },
-  },
-}
 
 local cmp = require "cmp"
 M.cmp = {

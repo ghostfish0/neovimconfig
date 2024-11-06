@@ -4,7 +4,7 @@
 local M = {}
 
 local highlights = require "highlights"
-local overrides = require("configs.overrides").chadrc
+local overrides = require("configs.ochadrc")
 
 M = {
   ui = {
@@ -26,7 +26,6 @@ M = {
   },
   base46 = {
     theme = "gruvbox",
-    theme_toggle = { "gruvbox", "gruvbox" },
     transparency = false,
     hl_override = highlights.override,
     hl_add = highlights.add,
@@ -53,6 +52,9 @@ M = {
       -- python stuff
       "black",
       "pyright",
+
+      -- java
+      "jdtls",
 
       -- note-taking stuff
       -- "marksman",
