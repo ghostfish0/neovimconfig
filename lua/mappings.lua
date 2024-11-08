@@ -54,7 +54,6 @@ map("n", "<leader>th", "<cmd>lua require('base46').toggle_theme()<cr>", { desc =
 
 map("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Terminal go up" })
 map("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Terminal go left" })
-map("n", "<Esc><Esc>", "<Cmd>noh<CR>", { desc = "noh" })
 map("t", "<C-n>", "<C-\\><C-n>", { desc = "Exit terminal mode", nowait = true })
 map("t", "<Esc>", function() -- workaround for normal-terminal mode
     vim.cmd "q"
