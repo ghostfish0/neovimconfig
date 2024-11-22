@@ -1,57 +1,4 @@
 local M = {}
-local separators = {
-  default = { left = "", right = "" },
-  round = { left = "", right = "" },
-  block = { left = "█", right = "█" },
-  arrow = { left = "", right = "" },
-}
-local sep_l = separators["default"]["left"]
-local sep_r = separators["default"]["right"]
-local modes = {
-  ["n"] = { "通常", "Normal" },
-  ["no"] = { "通常 (no)", "Normal" },
-  ["nov"] = { "通常 (nov)", "Normal" },
-  ["noV"] = { "通常 (noV)", "Normal" },
-  ["noCTRL-V"] = { "通常", "Normal" },
-  ["niI"] = { "通常 i", "Normal" },
-  ["niR"] = { "通常 r", "Normal" },
-  ["niV"] = { "通常 v", "Normal" },
-  ["nt"] = { "N端末", "NTerminal" },
-  ["ntT"] = { "NTERMINAL (ntT)", "NTerminal" },
-
-  ["v"] = { "視覚", "Visual" },
-  ["vs"] = { "視覚-CHAR (Ctrl O)", "Visual" },
-  ["V"] = { "視覚-LINE", "Visual" },
-  ["Vs"] = { "視覚-LINE", "Visual" },
-  [""] = { "視覚-BLOCK", "Visual" },
-
-  ["i"] = { "入力", "Insert" },
-  ["ic"] = { "入力 (completion)", "Insert" },
-  ["ix"] = { "入力 completion", "Insert" },
-
-  ["t"] = { "端末", "Terminal" },
-
-  ["R"] = { "REPLACE", "Replace" },
-  ["Rc"] = { "REPLACE (Rc)", "Replace" },
-  ["Rx"] = { "REPLACEa (Rx)", "Replace" },
-  ["Rv"] = { "V-REPLACE", "Replace" },
-  ["Rvc"] = { "V-REPLACE (Rvc)", "Replace" },
-  ["Rvx"] = { "V-REPLACE (Rvx)", "Replace" },
-
-  ["s"] = { "SELECT", "Select" },
-  ["S"] = { "S-LINE", "Select" },
-  [""] = { "S-BLOCK", "Select" },
-  ["c"] = { "コマンド", "Command" },
-  ["cv"] = { "コマンド", "Command" },
-  ["ce"] = { "コマンド", "Command" },
-  ["cr"] = { "コマンド", "Command" },
-  ["r"] = { "PROMPT", "Confirm" },
-  ["rm"] = { "MORE", "Confirm" },
-  ["r?"] = { "CONFIRM", "Confirm" },
-  ["x"] = { "CONFIRM", "Confirm" },
-  ["!"] = { "SHELL", "Terminal" },
-}
-
 M.competitest = {
   runner_ui = {
     interface = "split",
@@ -217,6 +164,7 @@ M.telescopefb = function()
     extensions = {
       file_browser = {
         layout_config = { height = 0.4 },
+        theme = "ivy",
         hijack_netrw = true,
         grouped = true,
         select_buffer = true,
@@ -326,7 +274,6 @@ M.blankline = {
     show_end = false,
   },
 }
-
 
 local cmp = require "cmp"
 M.cmp = {

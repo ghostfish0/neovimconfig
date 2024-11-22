@@ -57,6 +57,10 @@ return {
   { "seandewar/killersheep.nvim", cmd = "KillKillKill" },
   { "seandewar/nvimesweeper", cmd = "Nvimesweeper" },
   {
+    "lambdalisue/suda.vim",
+    cmd = { "SudaRead", "SudaWrite" },
+  },
+  {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
     config = overrides.telescopefb,
