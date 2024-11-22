@@ -20,6 +20,39 @@ M.ui = {
   cmp = {
     style = "atom_colored", -- default/flat_light/flat_dark/atom/atom_colored
   },
+
+  mason = { cmd = true, pkgs = {
+        -- lua stuff
+    "lua-language-server",
+    "stylua",
+
+    -- web dev stuff
+    "css-lsp",
+    "html-lsp",
+    "typescript-language-server",
+    "prettier",
+
+    -- c/cpp stuff
+    "clangd",
+    "clang-format",
+    "glsl_analyzer",
+    "rust_analyzer",
+
+    -- python stuff
+    "black",
+    "pyright",
+
+    -- note-taking stuff
+    "marksman",
+  }}
+}
+
+M.base46 = {
+  theme = "chadracula-evondev",
+  theme_toggle = { "chadracula-evondev", "chadracula-evondev" },
+  transparency = false,
+  hl_override = highlights.override,
+  hl_add = highlights.add,
 }
 
 return M
