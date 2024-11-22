@@ -116,45 +116,43 @@ vim.api.nvim_create_user_command("JdtStart", function()
   on_attach()
 end, {})
 
-local java_run = function(args, file)
-  require("nvchad.term").runner {
-    pos = "sp",
-    cmd = function()
-      vim.cmd "w"
-      return "javac " .. args .. " " .. file .. ".java; java " .. args .. " " .. file .. "; exit"
-    end,
-  }
-end
-
-local java_run_nocompile = function(args, file)
-  require("nvchad.term").runner {
-    pos = "sp",
-    cmd = function()
-      return "java " .. args .. " " .. file .. ";"
-    end,
-  }
-end
-
-local java_compile = function(args, file)
-  require("nvchad.term").runner {
-    pos = "sp",
-    cmd = function()
-      vim.cmd "w"
-      return "javac " .. args .. " " .. file .. ".java;"
-    end,
-  }
-end
-
 vim.api.nvim_create_user_command("JavaRun", function()
-  java_run("", vim.fn.expand "%:r")
+  require("nvchad.term").runner {
+    pos = "sp",
+    clear_cmd = false,
+    cmd = function()
+      vim.cmd "w"
+      return "javac "
+        .. vim.fn.expand "%:r"
+        .. ".java && java "
+        .. vim.fn.expand "%:r"
+    end,
+  }
 end, {})
 vim.api.nvim_create_user_command("ProcessingRunSketch", function()
-  java_compile("-cp '.;" .. processing_dir .. "'", "*")
-  java_run_nocompile("-cp '.;" .. processing_dir .. "'", project_name)
-end, {})
-vim.api.nvim_create_user_command("ProcessingCompileSketch", function()
-  java_compile("-cp '.;" .. processing_dir .. "'", "*")
+  require("nvchad.term").runner {
+    pos = "sp",
+    id = "processing",
+    clear_cmd = false,
+    cmd = function()
+      vim.cmd "w"
+      return 'javac -cp ".;'
+        .. processing_dir
+        .. '" *.java && java -cp ".;'
+        .. processing_dir
+        .. '" '
+        .. project_name
+        .. " && Invoke-Command -ScriptBlock { Exit }"
+    end,
+  }
 end, {})
 vim.api.nvim_create_user_command("ProcessingCompile", function()
-  java_compile("-cp '.;" .. processing_dir .. "'", vim.fn.expand "%:r")
+  require("nvchad.term").runner {
+    pos = "sp",
+    clear_cmd = false,
+    cmd = function()
+      vim.cmd "w"
+      return 'javac -cp ".;' .. processing_dir .. " " .. vim.fn.expand "%:r" .. ".java"
+    end,
+  }
 end, {})
