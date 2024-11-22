@@ -35,22 +35,7 @@ vim.cmd([[
     augroup END
 ]])
 
-o.shell = "pwsh.exe"
-o.shellcmdflag =
-	'-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues["Out-File:Encoding"]="utf8";Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
-o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
-o.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
-o.shellquote = ""
-o.shellxquote = ""
-
 new_cmd("Time", 'echo strftime("%F %X")', {})
-new_cmd(
-	"Todo",
-	":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/markdowns/i-passi-della-conquista-del-mondo.md",
-	{}
-)
-new_cmd("Codethings", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/markdowns/code.md", {})
-new_cmd("Calendar", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/markdowns/calendario.md", {})
 new_cmd("WhereAmI", ':lua print(vim.fn.expand("%:p"))', {})
 new_cmd("WhereAmICopy", ':lua vim.fn.setreg("*", vim.fn.expand("%:p:h"))', {})
 new_cmd("NablaToggle", 'lua require("nabla").toggle_virt()', {})
