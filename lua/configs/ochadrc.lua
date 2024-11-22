@@ -48,7 +48,7 @@ M.statusline.modules = {
     if rawget(vim, "lsp") and vim.version().minor >= 10 then
       for _, client in ipairs(vim.lsp.get_clients()) do
         if client.attached_buffers[utils.stbufnr()] and client.name ~= "copilot" then
-          return (vim.o.columns > 100 and "%#st_lsp#" .. client.name .. " /") or "%#st_lsp#  /"
+          return (vim.o.columns > 100 and " %#st_lsp#" .. client.name .. " /") or " %#st_lsp#  /"
         end
       end
     end
@@ -58,7 +58,7 @@ M.statusline.modules = {
     local icon = "%#St_cwd_text#" .. "󰉋"
     local name = vim.uv.cwd() or ""
     name = "%#St_cwd_text#" .. " " .. (name:match "([^/\\]+)[/\\]*$" or name) .. " "
-    return (vim.o.columns > 85 and ("%#St_cwd_sep# " .. icon .. name) .. "/ ") or ""
+    return (vim.o.columns > 85 and ("%#St_cwd_sep# " .. icon .. name) .. "/") or ""
   end,
   cursor = function()
     return "%#St_pos_icon#" .. "%#St_Pos_text# %p%% "

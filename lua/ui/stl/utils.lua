@@ -44,7 +44,7 @@ M.modes = {
   ["niI"] = { "通常 i", "Normal" },
   ["niR"] = { "通常 r", "Normal" },
   ["niV"] = { "通常 v", "Normal" },
-  ["nt"] = { "N端末", "NTerminal" },
+  ["nt"] = { "N-端末", "NTerminal" },
   ["ntT"] = { "NTERMINAL (ntT)", "NTerminal" },
 
   ["v"] = { "視覚", "Visual" },
