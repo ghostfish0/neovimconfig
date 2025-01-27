@@ -23,11 +23,14 @@ M = {
 
 M.statusline = {
   theme = "default", -- default/vscode/vscode_colored/minimal
-  order = { "mode", "file", "git", "%=", "lsp_msg", "diagnostics", "%=", "cwd", "lsp", "cursor", "copilot" },
+  order = { "mode", "file", "git", "%=", "lsp_msg", "diagnostics", "%=", "cwd", "lsp", "cursor", "clock", "copilot" },
   separator_style = separator_style,
 }
 
 M.statusline.modules = {
+  clock = function()
+    return "/  " .. os.date "%H:%M"
+  end,
   mode = function()
     local modes = utils.modes
     if not utils.is_activewin() then
@@ -37,7 +40,7 @@ M.statusline.modules = {
     local m = vim.api.nvim_get_mode().mode
     local current_mode = "%#St_" .. modes[m][2] .. "Mode# " .. modes[m][1]
     local mode_sep1 = "%#St_" .. modes[m][2] .. "ModeSep#" .. sep_r
-    return current_mode .. mode_sep1 .. "%#ST_EmptySpace#" .. sep_r
+    return current_mode .. " " .. mode_sep1 .. "%#ST_EmptySpace#" .. sep_r
   end,
   file = function()
     local x = utils.file()
