@@ -1,63 +1,18 @@
 local M = {}
-local separators = {
-  default = { left = "", right = "" },
-  round = { left = "", right = "" },
-  block = { left = "█", right = "█" },
-  arrow = { left = "", right = "" },
-}
-local sep_l = separators["default"]["left"]
-local sep_r = separators["default"]["right"]
-local modes = {
-  ["n"] = { "通常", "Normal" },
-  ["no"] = { "通常 (no)", "Normal" },
-  ["nov"] = { "通常 (nov)", "Normal" },
-  ["noV"] = { "通常 (noV)", "Normal" },
-  ["noCTRL-V"] = { "通常", "Normal" },
-  ["niI"] = { "通常 i", "Normal" },
-  ["niR"] = { "通常 r", "Normal" },
-  ["niV"] = { "通常 v", "Normal" },
-  ["nt"] = { "N端末", "NTerminal" },
-  ["ntT"] = { "NTERMINAL (ntT)", "NTerminal" },
 
-  ["v"] = { "視覚", "Visual" },
-  ["vs"] = { "視覚-CHAR (Ctrl O)", "Visual" },
-  ["V"] = { "視覚-LINE", "Visual" },
-  ["Vs"] = { "視覚-LINE", "Visual" },
-  [""] = { "視覚-BLOCK", "Visual" },
-
-  ["i"] = { "入力", "Insert" },
-  ["ic"] = { "入力 (completion)", "Insert" },
-  ["ix"] = { "入力 completion", "Insert" },
-
-  ["t"] = { "端末", "Terminal" },
-
-  ["R"] = { "REPLACE", "Replace" },
-  ["Rc"] = { "REPLACE (Rc)", "Replace" },
-  ["Rx"] = { "REPLACEa (Rx)", "Replace" },
-  ["Rv"] = { "V-REPLACE", "Replace" },
-  ["Rvc"] = { "V-REPLACE (Rvc)", "Replace" },
-  ["Rvx"] = { "V-REPLACE (Rvx)", "Replace" },
-
-  ["s"] = { "SELECT", "Select" },
-  ["S"] = { "S-LINE", "Select" },
-  [""] = { "S-BLOCK", "Select" },
-  ["c"] = { "コマンド", "Command" },
-  ["cv"] = { "コマンド", "Command" },
-  ["ce"] = { "コマンド", "Command" },
-  ["cr"] = { "コマンド", "Command" },
-  ["r"] = { "PROMPT", "Confirm" },
-  ["rm"] = { "MORE", "Confirm" },
-  ["r?"] = { "CONFIRM", "Confirm" },
-  ["x"] = { "CONFIRM", "Confirm" },
-  ["!"] = { "SHELL", "Terminal" },
-}
+M.jdtls = {}
 
 M.competitest = {
-  runner_ui = {
-    interface = "split",
+  compile_command = {
+    cpp = {
+      exec = "g++",
+      args = { "-std=c++20", "-Wall", "$(FNAME)", "-o", "$(FNOEXT)", "-DLOCAL" },
+    },
   },
-  compile_command = { cpp = { exec = "g++", args = { "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } } },
   testcases_directory = "./testcases",
+  received_problems_path = "$(HOME)/Documents/cp/$(JUDGE)/$(CONTEST)/$(PROBLEM).$(FEXT)",
+  template_file = { cpp = "~/Documents/cp/template.cpp" },
+  evaluate_template_modifiers = true,
 }
 
 M.context = {
@@ -180,6 +135,7 @@ M.telescope = {
   defaults = {
     -- layout_strategy = "flex",
     layout_config = {},
+    theme = "ivy",
     border = true,
     preview = {
       filesize_limit = 0.1,
@@ -190,8 +146,6 @@ M.telescope = {
   extensions_list = { "themes", "workspaces", "aerial" },
   extensions = {
     file_browser = {
-      initial_mode = "normal",
-      hijack_netrw = true,
     },
   },
 }
@@ -216,8 +170,10 @@ M.telescopefb = function()
   require("telescope").setup {
     extensions = {
       file_browser = {
+                initial_mode="normal",
         layout_config = { height = 0.4 },
-        hijack_netrw = true,
+        theme = "ivy",
+        hijack_netrw = false,
         grouped = true,
         select_buffer = true,
         hide_parent_dir = true,
@@ -326,7 +282,6 @@ M.blankline = {
     show_end = false,
   },
 }
-
 
 local cmp = require "cmp"
 M.cmp = {
