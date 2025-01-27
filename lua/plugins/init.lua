@@ -65,11 +65,7 @@ return {
   },
   {
     "ghostfish0/vim-matchup",
-    enabled = false,
     event = "User FilePost",
-    config = function()
-      vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    end,
   },
   {
     "xeluxee/competitest.nvim",
