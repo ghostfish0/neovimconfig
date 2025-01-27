@@ -4,7 +4,7 @@ require("nvchad.configs.lspconfig").defaults()
 local lspconfig = require "lspconfig"
 
 -- EXAMPLE
-local servers = {"html", "cssls", "ts_ls", "pyright", "glsl_analyzer" }
+local servers = { "html", "cssls", "ts_ls", "pyright", "glsl_analyzer" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
@@ -18,8 +18,9 @@ end
 
 -- clangd
 lspconfig["clangd"].setup {
-  on_attach = on_attach,
-  on_init = on_init,
+  filetypes = { "java" }, -- Only enable for Java files
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
   cmd = {
     "clangd",
     "--header-insertion=never",
@@ -27,7 +28,7 @@ lspconfig["clangd"].setup {
   capabilities = {
     textDocument = {
       completion = {
-        editsNearCursor = true,
+        editsNearCursor = false,
       },
     },
     offsetEncoding = { "utf-16" },
