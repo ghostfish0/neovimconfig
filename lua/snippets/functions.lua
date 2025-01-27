@@ -21,7 +21,7 @@ M.in_mathzone_markdown = function()
 end
 
 M.cc = { -- types
-  ["i"] = "ll",
+  ["i"] = "int",
   ["l"] = "ll",
   ["b"] = "bool",
   ["c"] = "char",
@@ -34,7 +34,7 @@ M.ds = { -- data structures
   ["p"] = "pair",
   ["m"] = "map",
   ["v"] = "vector",
-  ["s"] = "set",
+  -- ["s"] = "set",
 }
 
 M.cpfcc = function(capture) -- competitive programming fast class completion
