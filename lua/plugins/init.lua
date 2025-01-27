@@ -3,8 +3,6 @@ return {
   -- { "michaeljsmith/vim-indent-object", lazy = false },
   {
     "lukas-reineke/indent-blankline.nvim",
-    tag = "v2.20.8", -- Use v2
-    main = "ibl",
     config = function()
       require("ibl").setup(overrides.blankline)
     end,
@@ -53,7 +51,7 @@ return {
       -- map("n", "<leader><leader>l", "<CMD> HopWordCurrentLine<CR>", { desc = "Hint Line" })
     end,
   },
-  { "mfussenegger/nvim-jdtls" },
+  { "mfussenegger/nvim-jdtls", config = overrides.jdtls },
   { "seandewar/killersheep.nvim", cmd = "KillKillKill" },
   { "seandewar/nvimesweeper", cmd = "Nvimesweeper" },
   {
@@ -93,7 +91,7 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "canary",
+    branch = "main",
     keys = {
       { ",,", "<cmd>CopilotChatToggle<cr>", mode = { "n", "v" }, desc = "CopilotChat - Toggle" },
     },
@@ -230,6 +228,9 @@ return {
     opts = overrides.telescope,
   },
   -- disabled plugins
+    {     "nvzone/volt", enabled = false},
+    {     "nvzone/menu", enabled = false},
+  { "nvzone/minty", enabled = false },
   {
     "folke/which-key.nvim",
     enabled = false,
