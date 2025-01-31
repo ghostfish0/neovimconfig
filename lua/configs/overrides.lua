@@ -1,20 +1,5 @@
 local M = {}
 
-M.jdtls = {}
-
-M.competitest = {
-  compile_command = {
-    cpp = {
-      exec = "g++",
-      args = { "-std=c++20", "-Wall", "$(FNAME)", "-o", "$(FNOEXT)", "-DLOCAL" },
-    },
-  },
-  testcases_directory = "./testcases",
-  received_problems_path = "$(HOME)/Documents/cp/$(JUDGE)/$(CONTEST)/$(PROBLEM).$(FEXT)",
-  template_file = { cpp = "~/Documents/cp/template.cpp" },
-  evaluate_template_modifiers = true,
-}
-
 M.context = {
   max_lines = 5, -- How many lines the window should span. Values <= 0 mean no limit.
   separator = "·",
@@ -22,21 +7,9 @@ M.context = {
 
 M.aerial = {
   backends = {
-    markdown = { "markdown" },
     ["_"] = { "treesitter", "lsp" },
   },
   filter_kind = {
-    lua = false,
-    -- lua = {
-    --   -- "String",
-    --   "Constructor",
-    --   "Enum",
-    --   "Function",
-    --   "Interface",
-    --   "Module",
-    --   "Method",
-    --   "Struct",
-    -- },
     ["_"] = false,
   },
   icons = {
@@ -99,28 +72,12 @@ M.treesitter = {
     disable_virtual_text = true,
   },
   ensure_installed = {
-    "java",
     "vim",
     -- lua stuff
     "lua",
-    -- web dev stuff
-    "html",
-    "css",
-    "javascript",
-    "typescript",
-    "tsx",
-    --- c/cpp stuff
-    "c",
-    "cpp",
-    "cuda",
     -- python stuff
     "python",
     --- note taking stuff
-    "markdown",
-    "markdown_inline",
-    --- graphics stuff
-    "glsl",
-    ---
     "diff",
   },
   indent = {
@@ -223,59 +180,6 @@ M.workspaces = {
   },
 }
 
--- git support and more in nvimtree
-M.nvimtree = {
-  hijack_cursor = false,
-  view = {
-    cursorline = false,
-    width = {
-      max = "25%",
-    },
-  },
-  actions = {
-    open_file = {
-      resize_window = false,
-    },
-  },
-  filters = {
-    -- git_ignored = false,
-  },
-  git = {
-    disable_for_dirs = {
-      "C:\\Users\\tinnguyen\\Documents\\notes\\",
-    },
-    enable = true,
-  },
-
-  renderer = {
-    highlight_opened_files = "all",
-    -- highlight_git = true,
-    indent_markers = {
-      enable = true,
-      inline_arrows = true,
-      icons = {
-        corner = "└",
-        edge = "│",
-        item = "│",
-        bottom = "─",
-        none = " ",
-      },
-    },
-    icons = {
-      show = {
-        git = true,
-      },
-    },
-  },
-}
-
--- M.colorizer = {
---   filetypes = {
---     markdown = { names = false },
---     "*", -- Highlight all files, but customize some others.
---   },
--- }
-
 M.blankline = {
   scope = {
     show_start = false,
@@ -309,14 +213,6 @@ M.cmp = {
         fallback()
       end
     end, { "i", "s" }),
-  },
-}
-
-M.cmpcpp = {
-  sources = {
-    { name = "luasnip", priority = "1000000" },
-    { name = "buffer" },
-    { name = "path" },
   },
 }
 
