@@ -25,7 +25,7 @@ M = {
     highlight = { hex = true, lspvars = true },
   },
   base46 = {
-    -- theme = "gruvbox",
+    theme = "catppuccin", -- base16, tokyonight, onedark, gruvbox, catppuccino
     transparency = false,
     hl_override = highlights.override,
     hl_add = highlights.add,
