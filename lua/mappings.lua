@@ -67,3 +67,5 @@ unmap("n", "<leader>e")
 --- redefine default mappings
 map("n", "<leader>e", "<cmd>Telescope file_browser<cr>")
 map("n", "<space>fb", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>")
+
+map("n", "<leader>xx", "<CMD>ToggleTask<CR>", { desc = "Toggle task" })

@@ -55,7 +55,21 @@ new_cmd("WhereAmI", ':lua print(vim.fn.expand("%:p"))', {})
 new_cmd("WhereAmICopy", ':lua vim.fn.setreg("*", vim.fn.expand("%:p:h"))', {})
 new_cmd("NablaToggle", 'lua require("nabla").toggle_virt()', {})
 new_cmd("Peek", ':lua require("peek").open()<CR>', {})
+new_cmd("ToggleTask", function()
+	local line = vim.api.nvim_get_current_line()
+	if line:match("^%s*%[ %]") then
+		-- If it's an unchecked task, mark it as checked
+		line = line:gsub("%[ %]", "[x]")
+	elseif line:match("^%s*%[x%]") then
+		-- If it's a checked task, mark it as unchecked
+		line = line:gsub("%[x%]", "[ ]")
+	else
+		-- If it's not a task, turn it into an unchecked task
+		line = "[ ] " .. line
+	end
+	vim.api.nvim_set_current_line(line)
+end, {})
 
 -- lua snippets
-require("luasnip.loaders.from_lua").lazy_load { paths = "C:/Users/tinnguyen/AppData/Local/nvim/lua/snippets/" }
+require("luasnip.loaders.from_lua").lazy_load({ paths = "C:/Users/tinnguyen/AppData/Local/nvim/lua/snippets/" })
 ---
