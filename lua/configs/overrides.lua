@@ -22,7 +22,6 @@ M.context = {
 
 M.aerial = {
   backends = {
-    markdown = { "markdown" },
     ["_"] = { "treesitter", "lsp" },
   },
   filter_kind = {
