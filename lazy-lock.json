@@ -19,6 +19,7 @@
   "indent-blankline.nvim": { "branch": "master", "commit": "7a698a1d7ed755af9f5a88733b23ca246ce2df28" },
   "killersheep.nvim": { "branch": "master", "commit": "506823c47b854df02e78d5fec9468ab0e542dcf5" },
   "lazy.nvim": { "branch": "main", "commit": "d8f26efd456190241afd1b0f5235fe6fdba13d4a" },
+  "leetcode.nvim": { "branch": "master", "commit": "db7e1cd6b9191b34b4c1f2f96e4e3949cde9f951" },
   "markdown-preview.nvim": { "branch": "master", "commit": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee" },
   "mason.nvim": { "branch": "main", "commit": "e2f7f9044ec30067bc11800a9e266664b88cda22" },
   "menu": { "branch": "main", "commit": "7769b17c2a131108c02b10e9f844e504aa605cc2" },
@@ -40,7 +41,6 @@
   "treesitter-indent-object.nvim": { "branch": "master", "commit": "84feec844aa386554b6eeda2833143615346cf3e" },
   "treesj": { "branch": "main", "commit": "ec234a9a13d61a7b95900abdb02fabaea1afd9f3" },
   "ui": { "branch": "v3.0", "commit": "f8915e9a6adc0ec52acf06b441e318d801868b2c" },
-  "vim-matchup": { "branch": "master", "commit": "1535a769d5dca851fe7d41b0be95f7c7203a4bef" },
   "volt": { "branch": "main", "commit": "91fe3e82842a709443cdd61fc1a1315a5eb57a8d" },
   "workspaces.nvim": { "branch": "master", "commit": "55a1eb6f5b72e07ee8333898254e113e927180ca" }
 }

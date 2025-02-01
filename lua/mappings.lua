@@ -1,4 +1,4 @@
-require "nvchad.mappings"
+require("nvchad.mappings")
 
 local map = vim.keymap.set
 local unmap = vim.keymap.del
@@ -53,7 +53,7 @@ map("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Terminal go up" })
 map("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Terminal go left" })
 map("t", "<C-n>", "<C-\\><C-n>", { desc = "Exit terminal mode", nowait = true })
 map("t", "<Esc>", function() -- workaround for normal-terminal mode
-    vim.cmd "q"
+	vim.cmd("q")
 end, { desc = "Close terminal" })
 
 --- remove default mappings
