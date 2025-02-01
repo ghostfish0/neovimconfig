@@ -1,4 +1,4 @@
-require "nvchad.options"
+require("nvchad.options")
 
 local o = vim.o
 local g = vim.g
@@ -25,19 +25,19 @@ g.matchup_matchparen_offscreen = {}
 g.matchup_surround_enabled = 1
 g.matchup_motion_enabled = 0
 g.matchup_matchparen_fallback = 0
-g.matchup_matchparen_offscreen = 'popup'
+g.matchup_matchparen_offscreen = "popup"
 
-vim.cmd [[ 
+vim.cmd([[ 
     augroup matchup_matchparen_disable_ft
       autocmd!
       autocmd FileType lazy,help let [b:matchup_matchparen_fallback,
           \ b:matchup_matchparen_enabled] = [0, 0]
     augroup END
-]]
+]])
 
 o.shell = "pwsh.exe"
 o.shellcmdflag =
-  '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues["Out-File:Encoding"]="utf8";Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
+	'-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues["Out-File:Encoding"]="utf8";Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
 o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
 o.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
 o.shellquote = ""
@@ -45,9 +45,9 @@ o.shellxquote = ""
 
 new_cmd("Time", 'echo strftime("%F %X")', {})
 new_cmd(
-  "Todo",
-  ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/markdowns/i-passi-della-conquista-del-mondo.md",
-  {}
+	"Todo",
+	":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/markdowns/i-passi-della-conquista-del-mondo.md",
+	{}
 )
 new_cmd("Codethings", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/markdowns/code.md", {})
 new_cmd("Calendar", ":e C:/Users/tinnguyen/Documents/Code/Projects/homepage/markdowns/calendario.md", {})
