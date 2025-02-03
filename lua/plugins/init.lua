@@ -12,7 +12,9 @@ return {
 			"MunifTanjim/nui.nvim",
 		},
 		opts = {
-			-- configuration goes here
+			storage = {
+				home = "C:/Users/tinnguyen/Documents/cp/LeetCode",
+			},
 		},
 	},
 	{

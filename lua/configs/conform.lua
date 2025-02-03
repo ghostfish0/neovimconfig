@@ -5,17 +5,31 @@ local options = {
     html = { "prettier" },
     json = { "prettier" },
     java = { "clang-format" },
-    cpp = { "clang-format-cpp" },
+    cpp = { "clang-format" },
   },
   formatters = {
     ["clang-format-cpp"] = {
       command = "clang-format",
-    },
-    ["clang-format"] = {
       env = {
         UseTab = "Always",
         TabWidth = 8,
         IndentWidth = 8,
+        ColumnLimit = 10,
+        -- AlignArrayOfStructures = "Right",
+        -- AlignConsecutiveAssignments = "Consecutive",
+        AlignConsecutiveMacros = "Consecutive",
+        AlignAfterOpenBracket = "Align",
+        AllowAllArgumentsOnNextLine = true,
+        AllowShortCaseExpressionOnASingleLine = true,
+        BinPackArguments = false,
+        BinPackParameters = false,
+      },
+    },
+    ["clang-format"] = {
+      env = {
+        UseTab = "Always",
+        TabWidth = 4,
+        IndentWidth = 4,
         ColumnLimit = 10,
         -- AlignArrayOfStructures = "Right",
         -- AlignConsecutiveAssignments = "Consecutive",
