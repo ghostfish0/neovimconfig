@@ -1,6 +1,8 @@
 local overrides = require("configs.overrides")
 return {
 	-- { "michaeljsmith/vim-indent-object", lazy = false },
+    {   "lambdalisue/vim-suda", lazy = false, },
+    {   "christoomey/vim-tmux-navigator", lazy = false, },
 	{
 		"kawre/leetcode.nvim",
 		cmd = "Leet",
