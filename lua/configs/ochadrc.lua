@@ -4,22 +4,22 @@ local separator_style = "default"
 local sep_l = utils.separators[separator_style]["left"]
 local sep_r = utils.separators[separator_style]["right"]
 
-M = {
-  tabufline = {
-    order = { "treeOffset", "buffers", "tabs", "btns" },
-    modules = {
-      btns = function()
-        local appname = vim.env.NVIM_APPNAME:gsub("nvim", ""):gsub("%-", "")
-        if appname == "" then
-          return ""
-        end
-        local btn = require("nvchad.tabufline.utils").btn
-        local toggle_theme = btn(appname, "ThemeToggleBtn", "Toggle_theme")
-        return toggle_theme
-      end,
-    },
-  },
-}
+-- M = {
+--   tabufline = {
+--     order = { "treeOffset", "buffers", "tabs", "btns" },
+--     modules = {
+--       btns = function()
+--         local appname = vim.env.NVIM_APPNAME:gsub("nvim", ""):gsub("%-", "")
+--         if appname == "" then
+--           return ""
+--         end
+--         local btn = require("nvchad.tabufline.utils").btn
+--         local toggle_theme = btn(appname, "ThemeToggleBtn", "Toggle_theme")
+--         return toggle_theme
+--       end,
+--     },
+--   },
+-- }
 
 M.statusline = {
   theme = "default", -- default/vscode/vscode_colored/minimal
