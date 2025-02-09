@@ -6,6 +6,7 @@ local options = {
     json = { "prettier" },
     java = { "clang-format" },
     cpp = { "clang-format" },
+    c = { "clang-format" },
   },
   formatters = {
     ["clang-format-cpp"] = {
