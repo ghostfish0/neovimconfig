@@ -126,4 +126,5 @@ return {
   s({ trig = "inf", snippetType = "autosnippet" }, t "\\infty", { condition = in_mathzone }),
   s({ trig = "ee", snippetType = "autosnippet" }, fmta("e^{<>} <>", { i(1), i(0) }), { condition = in_mathzone }),
   s({ trig = "*", snippetType = "autosnippet" }, t "\\cdot", { condition = in_mathzone }),
+    s({ trig = "tag" }, fmta("\\tag^{<>} <>", { i(1), i(0) }), { condition = in_mathzone }),
 }
