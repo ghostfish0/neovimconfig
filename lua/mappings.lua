@@ -12,6 +12,7 @@ map("n", "j", "gj")
 map("n", "k", "gk")
 map({ "n", "v" }, "]]", "]m")
 map({ "n", "v" }, "[[", "[m")
+map("n", "<C-m>", "%")
 
 -- editing mappings
 map({ "n", "v", "i" }, "<C-Left>", "<cmd>tabn<cr>", { desc = "Next tab" })

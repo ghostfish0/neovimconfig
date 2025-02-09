@@ -25,6 +25,8 @@ return {
     s("builtin_ctz", { t("__builtin_ctz("), i(1), t(")") }),
     s("max_element", { t("max_element("), i(1), t(")") }),
     s("cout", t("cout")),
+    s("length", t("length()")),
+    s("isEmpty", t("empty()")),
     s("sysout", t("cout")),
     s("cin", t("cin")),
     -- vector
