@@ -15,9 +15,9 @@ M.get_visual = function(_, parent)
     return sn(nil, i(1))
   end
 end
-M.in_mathzone_markdown = function()
-  -- The `in_mathzone` function requires the Nabla plugin
-  return require("nabla.utils").in_mathzone()
+M.in_mathzone = function()
+    local file_ext = vim.fn.expand('%:e')
+    return (file_ext == "md") and require("nabla.utils").in_mathzone() or vim.fn['vimtex#syntax#in_mathzone']() == 1
 end
 
 M.cc = { -- types

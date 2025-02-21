@@ -7,7 +7,7 @@ local f = ls.function_node
 -- local d = ls.dynamic_node
 local fmta = require("luasnip.extras.fmt").fmta
 local utils = require "snippets.functions"
-local in_mathzone = utils.in_mathzone_markdown
+local in_mathzone = utils.in_mathzone
 
 return {
   -- expressions
@@ -23,7 +23,7 @@ return {
     { condition = in_mathzone }
   ),
   s(
-    { trig = "([%a])(%d+)", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    { trig = "([%a%)%]%}])(%d+)%s", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
     fmta("<>_<> <>", {
       f(function(_, snip)
         return snip.captures[1]
@@ -68,6 +68,62 @@ return {
     { condition = in_mathzone }
   ),
   s(
+    { trig = "(%w+)%s*/%s*(%w+)%s", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta("\\frac{<>}{<>} <>", {
+      f(function(_, snip)
+        print(vim.inspect(snip.captures))
+        return snip.captures[1]
+      end),
+      f(function(_, snip)
+        return snip.captures[2]
+      end),
+      i(0),
+    }),
+    { condition = in_mathzone }
+  ),
+  s(
+    { trig = "%((.+)%)%s*/%s*(%w+)%s", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta("\\frac{<>}{<>} <>", {
+      f(function(_, snip)
+        print(vim.inspect(snip.captures))
+        return snip.captures[1]
+      end),
+      f(function(_, snip)
+        return snip.captures[2]
+      end),
+      i(0),
+    }),
+    { condition = in_mathzone }
+  ),
+  s(
+    { trig = "(%w+)%s*/%s*%((.+)%)%s", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta("\\frac{<>}{<>} <>", {
+      f(function(_, snip)
+        print(vim.inspect(snip.captures))
+        return snip.captures[1]
+      end),
+      f(function(_, snip)
+        return snip.captures[2]
+      end),
+      i(0),
+    }),
+    { condition = in_mathzone }
+  ),
+  s(
+    { trig = "%((.+)%)%s*/%s*%((.+)%)%s", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta("\\frac{<>}{<>} <>", {
+      f(function(_, snip)
+        print(vim.inspect(snip.captures))
+        return snip.captures[1]
+      end),
+      f(function(_, snip)
+        return snip.captures[2]
+      end),
+      i(0),
+    }),
+    { condition = in_mathzone }
+  ),
+  s(
     { trig = "dint", snippetType = "autosnippet" },
     fmta("\\int_{<>}^{<>} <> \\,dx <>", { i(1), i(2), i(3), i(0) }),
     { condition = in_mathzone }
@@ -93,8 +149,13 @@ return {
   ),
   s({ trig = "rr", snippetType = "autosnippet" }, fmta("\\sqrt{<>} <>", { i(1), i(0) }), { condition = in_mathzone }),
   s(
-    { trig = "vv", snippetType = "autosnippet" },
-    fmta("\\overrightarrow{<>} <>", { i(1), i(0) }),
+    { trig = "([%w%)%]%}])vv", regTrig = true, wordTrig = false, snippetType = "autosnippet" },
+    fmta("\\vec{<>}<>", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+      i(0),
+    }),
     { condition = in_mathzone }
   ),
   -- s(
@@ -126,5 +187,6 @@ return {
   s({ trig = "inf", snippetType = "autosnippet" }, t "\\infty", { condition = in_mathzone }),
   s({ trig = "ee", snippetType = "autosnippet" }, fmta("e^{<>} <>", { i(1), i(0) }), { condition = in_mathzone }),
   s({ trig = "*", snippetType = "autosnippet" }, t "\\cdot", { condition = in_mathzone }),
-    s({ trig = "tag" }, fmta("\\tag^{<>} <>", { i(1), i(0) }), { condition = in_mathzone }),
+  s({ trig = "RR", snippetType = "autosnippet" }, t "\\mathbb{R}", { condition = in_mathzone }),
+  s({ trig = "tag" }, fmta("\\tag^{<>} <>", { i(1), i(0) }), { condition = in_mathzone }),
 }
