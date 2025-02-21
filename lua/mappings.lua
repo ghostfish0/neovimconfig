@@ -36,6 +36,20 @@ map("n", "<A-=>", "<C-w>>", { desc = "" })
 
 map("n", "dac", "V%d", { desc = "Delete comment" })
 
+-- markdown
+map("v", "<leader>b", function()
+	local start_pos = vim.fn.getpos("'<")
+	local end_pos = vim.fn.getpos("'>")
+	vim.cmd('normal! "zy')
+	local selected = vim.fn.getreg("z")
+	local trimmed = vim.trim(selected)
+	local bold_text = "**" .. trimmed .. "**" .. (selected == trimmed and "" or " ")
+	vim.fn.setreg("z", bold_text)
+	vim.cmd('normal! gv"zp')
+	vim.fn.setpos("'<", start_pos)
+	vim.fn.setpos("'>", end_pos)
+end, { desc = "Bold selected text in markdown" })
+
 -- other mappings
 map("n", "<leader>th", "<cmd>lua require('base46').toggle_theme()<cr>", { desc = "Toggle theme" })
 
@@ -63,6 +77,9 @@ unmap("n", "<C-n>")
 unmap("n", "<leader>wk")
 unmap("n", "<leader>wK")
 unmap("n", "<leader>e")
+-- unmapping terminal mappings
+unmap("n", "<leader>h")
+unmap("n", "<leader>v")
 
 --- redefine default mappings
 map("n", "<leader>e", "<cmd>Telescope file_browser<cr>")
