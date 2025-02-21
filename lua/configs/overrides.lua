@@ -1,5 +1,24 @@
 local M = {}
 
+M.imgclip = {
+  extension = "jpg", ---@type string | fun(): string
+  relative_to_current_file = true, ---@type boolean | fun(): boolean
+  use_cursor_in_template = false,
+  insert_mode_after_paste = false,
+
+  show_dir_path_in_prompt = true,
+  filetypes = {
+    tex = {
+      template = [[
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{assets/$FILE_NAME}
+\end{figure}
+    ]], ---@type string | fun(context: table): string
+    },
+  },
+}
+
 M.context = {
   max_lines = 5, -- How many lines the window should span. Values <= 0 mean no limit.
   separator = "·",
