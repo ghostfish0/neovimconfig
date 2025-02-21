@@ -47,7 +47,7 @@ M.modes = {
   ["nt"] = { "N-端末", "NTerminal" },
   ["ntT"] = { "NTERMINAL (ntT)", "NTerminal" },
 
-  ["v"] = { "視覚", "Visual" },
+  ["v"] = { "V-視覚", "Visual" },
   ["vs"] = { "視覚-CHAR (Ctrl O)", "Visual" },
   ["V"] = { "視覚-LINE", "Visual" },
   ["Vs"] = { "視覚-LINE", "Visual" },
