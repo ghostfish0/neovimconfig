@@ -50,5 +50,4 @@ new_cmd("NablaToggle", 'lua require("nabla").toggle_virt()', {})
 new_cmd("Peek", ':lua require("peek").open()<CR>', {})
 
 -- lua snippets
-require("luasnip.loaders.from_lua").lazy_load { paths = "C:/Users/tinnguyen/AppData/Local/nvim/lua/snippets/" }
----
+require("luasnip.loaders.from_lua").lazy_load({ paths = "./lua/snippets/" })
