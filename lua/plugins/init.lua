@@ -1,6 +1,16 @@
 local overrides = require("configs.overrides")
 return {
     {
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = overrides.imgclip,
+        cmd = {
+            "PasteImage",
+            "ImgClipDebug",
+            "ImgClipConfig"
+        },
+    },
+    {
         "lervag/vimtex",
         lazy = false, -- we don't want to lazy load VimTeX
         -- tag = "v2.15", -- uncomment to pin to a specific release
