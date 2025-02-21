@@ -105,6 +105,10 @@ M.treesitter = {
     --   "python"
     -- },
   },
+  highlight = {
+    enable = true,
+    disable = { "latex" },
+  },
 }
 
 M.telescope = {
@@ -121,13 +125,12 @@ M.telescope = {
   },
   extensions_list = { "themes", "workspaces", "aerial" },
   extensions = {
-    file_browser = {
-    },
+    file_browser = {},
   },
 }
 
 M.telescopefb = function()
-  require("telescope").load_extension "file_browser"
+  require("telescope").load_extension("file_browser")
   local fb = require("telescope").extensions.file_browser.actions
   local select_one_or_multi = function(prompt_bufnr)
     local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
@@ -143,10 +146,10 @@ M.telescopefb = function()
       require("telescope.actions").select_default(prompt_bufnr)
     end
   end
-  require("telescope").setup {
+  require("telescope").setup({
     extensions = {
       file_browser = {
-                initial_mode="normal",
+        initial_mode = "normal",
         layout_config = { height = 0.4 },
         theme = "ivy",
         hijack_netrw = false,
@@ -184,7 +187,7 @@ M.telescopefb = function()
         },
       },
     },
-  }
+  })
 end
 
 M.workspaces = {
@@ -206,7 +209,7 @@ M.blankline = {
   },
 }
 
-local cmp = require "cmp"
+local cmp = require("cmp")
 M.cmp = {
   sources = {
     { name = "luasnip" },
