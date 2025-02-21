@@ -40,6 +40,12 @@ M.override = {
 
 ---@type HLTable
 M.add = {
+  texCmd = { fg = "yellow" },
+  texCmdEnv = { fg = "yellow" },
+  texMathDelim = { fg = "yellow" },
+  texMathError = { fg = "white", bg = "black" },
+  texEnvMArgName = { fg = "white" },
+  texEnvOpt = { fg = "yellow", bold = false },
   ["@keyword.directive.cpp"] = { fg = "dark_purple" },
   ["@keyword.directive.define.cpp"] = { fg = "dark_purple" },
   ["@keyword.conditional.cpp"] = { fg = "green" },
