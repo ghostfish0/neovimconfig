@@ -2,6 +2,11 @@ local overrides = require("configs.overrides")
 return {
 	-- { "michaeljsmith/vim-indent-object", lazy = false },
 	{
+		"HakonHarnes/img-clip.nvim",
+		event = "VeryLazy",
+		cmd = "PasteImage",
+	},
+	{
 		"kawre/leetcode.nvim",
 		cmd = "Leet",
 		build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
