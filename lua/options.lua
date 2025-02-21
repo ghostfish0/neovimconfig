@@ -8,10 +8,12 @@ local new_cmd = api.nvim_create_user_command
 o.linebreak = true
 o.breakindent = true
 o.number = false
-o.shiftwidth = 4
-o.tabstop = 4
+o.shiftwidth = 2
+o.tabstop = 2
 o.fileformat = "unix"
 -- o.number = false
+
+g.vimtex_imaps_enabled = 0
 
 g.loaded_matchparen = 1
 g.matchup_matchparen_deferred = 1
