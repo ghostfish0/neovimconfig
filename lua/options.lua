@@ -35,13 +35,6 @@ vim.cmd [[
     augroup END
 ]]
 
-o.shell = "pwsh.exe"
-o.shellcmdflag =
-  '-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues["Out-File:Encoding"]="utf8";Remove-Alias -Force -ErrorAction SilentlyContinue tee;'
-o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
-o.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
-o.shellquote = ""
-o.shellxquote = ""
 
 new_cmd("Time", 'echo strftime("%F %X")', {})
 new_cmd(
