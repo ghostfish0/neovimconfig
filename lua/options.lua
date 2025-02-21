@@ -71,5 +71,4 @@ new_cmd("ToggleTask", function()
 end, {})
 
 -- lua snippets
-require("luasnip.loaders.from_lua").lazy_load({ paths = "C:/Users/tinnguyen/AppData/Local/nvim/lua/snippets/" })
----
+require("luasnip.loaders.from_lua").lazy_load({ paths = "./lua/snippets/" })
