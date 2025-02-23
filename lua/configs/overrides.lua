@@ -91,12 +91,16 @@ M.treesitter = {
     disable_virtual_text = true,
   },
   ensure_installed = {
+    "lua", "luadoc", "printf",
     "vim",
+    "vimdoc",
+    "query",
     -- lua stuff
     "lua",
-    -- python stuff
-    "python",
     --- note taking stuff
+    "markdown",
+    "markdown_inline",
+    "latex",
     "diff",
   },
   indent = {
