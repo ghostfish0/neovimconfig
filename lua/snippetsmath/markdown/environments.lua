@@ -9,31 +9,92 @@ local fmta = require("luasnip.extras.fmt").fmta
 local rep = require("luasnip.extras").rep
 local utils = require "snippets.functions"
 local get_visual = utils.get_visual
+local in_mathzone = utils.in_mathzone
 local line_begin = require("luasnip.extras.expand_conditions").line_begin
 
-return {
-  s(
-    { trig = "new", dscr = "A generic new environmennt", snippetType = "autosnippet" },
+return {}, {
+  s("mq",
+    fmta("\\begin{bmatrix} <> \\end{bmatrix}<>",
+      { i(1),
+        i(0),
+      }
+    ),
+    { condition = in_mathzone - line_begin }
+  ),
+  s("mq",
+    fmta(
+      [[
+      \begin{bmatrix}
+      <>
+      \end{bmatrix}<>
+      ]],
+      {
+        i(1),
+        i(0),
+      }
+    ),
+    { condition = line_begin * in_mathzone }
+  ),
+  s("case",
+    fmta(
+      [[
+      \begin{cases}
+      <>
+      \end{cases}<>
+      ]],
+      {
+        i(1),
+        i(0),
+      }
+    ),
+    { condition = in_mathzone }
+  ),
+  s("all",
+    fmta(
+      [[
+      \begin{aligned}
+      <>
+      \end{aligned}<>
+      ]],
+      {
+        i(1),
+        i(0),
+      }
+    ),
+    { condition = line_begin * in_mathzone }
+  ),
+  s("new",
     fmta(
       [[
       \begin{<>}
-        <>
-      \end{<>}
+      <>
+      \end{<>}<>
       ]],
       {
         i(1),
         i(2),
         rep(1),
+        i(0),
       }
     ),
     { condition = line_begin }
   ),
-  s(
-    { trig = "nn", dscr = "nn into math ", snippetType = "autosnippet" },
+  s("new",
+    fmta("\\begin{<>} <> \\end{<>}<>",
+      {
+        i(1),
+        i(2),
+        rep(1),
+        i(0),
+      }
+    ),
+    { condition = in_mathzone - line_begin }
+  ),
+  s("nn",
     fmta(
-      [[ 
-        $$ 
-          <>
+      [[
+        $$
+        <>
         $$
         <>
       ]],
@@ -44,8 +105,7 @@ return {
     ),
     { condition = line_begin }
   ),
-  s(
-    { trig = "mm", dscr = "mm into inline math", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
+  s("mm",
     fmta("<>$<>$", {
       f(function(_, snip)
         return snip.captures[1]
